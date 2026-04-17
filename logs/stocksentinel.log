@@ -1,0 +1,651 @@
+2026-04-17 17:37:28 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-17 17:37:28 [main] INFO  c.s.StockSentinelApplication - Starting StockSentinelApplication using Java 17.0.12 with PID 16820 (C:\Users\user\GITDSA\Stock-Sentinel\target\classes started by user in C:\Users\user\GITDSA\Stock-Sentinel)
+2026-04-17 17:37:28 [main] DEBUG c.s.StockSentinelApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2026-04-17 17:37:28 [main] INFO  c.s.StockSentinelApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-17 17:37:28 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-17 17:37:28 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 28 ms. Found 3 JPA repository interfaces.
+2026-04-17 17:37:28 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-17 17:37:28 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-17 17:37:28 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-17 17:37:28 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2026-04-17 17:37:28 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-17 17:37:28 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 693 ms
+2026-04-17 17:37:28 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-17 17:37:28 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:stocksentineldb user=SA
+2026-04-17 17:37:28 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-17 17:37:28 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:stocksentineldb'
+2026-04-17 17:37:28 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-17 17:37:29 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2026-04-17 17:37:29 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-04-17 17:37:29 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-17 17:37:29 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-17 17:37:29 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-17 17:37:29 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-17 17:37:29 [main] DEBUG c.stocksentinel.auth.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2026-04-17 17:37:29 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-17 17:37:29 [main] INFO  c.s.config.SecurityConfig - Security configuration loaded
+2026-04-17 17:37:29 [main] INFO  c.s.config.SchedulerConfig - Scheduler enabled — live stock polling is active
+2026-04-17 17:37:29 [main] INFO  com.stocksentinel.config.CorsConfig - CORS configured for http://localhost:5173
+2026-04-17 17:37:29 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-17 17:37:30 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: b8ff4991-29cd-4e5d-a80f-28e9ae8e8952
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-17 17:37:30 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@747795d7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35408036, org.springframework.security.web.context.SecurityContextHolderFilter@70efc3f9, org.springframework.security.web.header.HeaderWriterFilter@59c530b5, org.springframework.security.web.authentication.logout.LogoutFilter@66d0d5ee, com.stocksentinel.auth.JwtAuthFilter@6892d403, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@69e636cc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1bbf7e81, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6be8e6ee, org.springframework.security.web.session.SessionManagementFilter@4cb37177, org.springframework.security.web.access.ExceptionTranslationFilter@7c1a5092, org.springframework.security.web.access.intercept.AuthorizationFilter@361eed12]
+2026-04-17 17:37:30 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-17 17:37:30 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2026-04-17 17:37:30 [main] INFO  c.s.StockSentinelApplication - Started StockSentinelApplication in 2.431 seconds (process running for 2.595)
+2026-04-17 17:37:30 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:37:30 [main] INFO  c.s.StockSentinelApplication - ========================================
+2026-04-17 17:37:30 [main] INFO  c.s.StockSentinelApplication -   StockSentinel is starting up...
+2026-04-17 17:37:30 [main] INFO  c.s.StockSentinelApplication -   Swagger UI: http://localhost:8080/swagger-ui.html
+2026-04-17 17:37:30 [main] INFO  c.s.StockSentinelApplication -   H2 Console: http://localhost:8080/h2-console
+2026-04-17 17:37:30 [main] INFO  c.s.StockSentinelApplication - ========================================
+2026-04-17 17:37:31 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:37:31 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 17:37:32 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 17:37:32 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 17:37:33 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 17:37:33 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 17:37:34 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 198.35
+2026-04-17 17:37:34 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-17 17:37:34 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AAPL: 1 points
+2026-04-17 17:37:34 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze TSLA: 1 points
+2026-04-17 17:37:34 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze GOOGL: 1 points
+2026-04-17 17:37:34 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 1 points
+2026-04-17 17:37:34 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 1 points
+2026-04-17 17:37:34 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 1 points
+2026-04-17 17:37:34 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:38:23 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-17 17:38:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-17 17:38:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-04-17 17:38:23 [http-nio-8080-exec-1] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/register — email: anomaly.test@stocksentinel.local
+2026-04-17 17:38:24 [http-nio-8080-exec-1] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: anomaly.test@stocksentinel.local
+2026-04-17 17:38:24 [http-nio-8080-exec-1] INFO  com.stocksentinel.auth.AuthService - New user registered: anomaly.test@stocksentinel.local
+2026-04-17 17:38:24 [http-nio-8080-exec-2] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/login — email: anomaly.test@stocksentinel.local
+2026-04-17 17:38:24 [http-nio-8080-exec-2] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: anomaly.test@stocksentinel.local
+2026-04-17 17:38:24 [http-nio-8080-exec-2] INFO  com.stocksentinel.auth.AuthService - User logged in: anomaly.test@stocksentinel.local
+2026-04-17 17:38:24 [http-nio-8080-exec-3] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: anomaly.test@stocksentinel.local
+2026-04-17 17:38:24 [http-nio-8080-exec-3] INFO  c.s.datasource.DataSourceController - POST /api/datasource/poll — manual poll triggered
+2026-04-17 17:38:24 [http-nio-8080-exec-3] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:38:24 [http-nio-8080-exec-3] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:38:25 [http-nio-8080-exec-3] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 17:38:25 [http-nio-8080-exec-3] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 17:38:26 [http-nio-8080-exec-3] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 17:38:26 [http-nio-8080-exec-3] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 17:38:27 [http-nio-8080-exec-3] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 17:38:27 [http-nio-8080-exec-3] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 198.35
+2026-04-17 17:38:28 [http-nio-8080-exec-3] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-17 17:38:28 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AAPL: 2 points
+2026-04-17 17:38:28 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze TSLA: 2 points
+2026-04-17 17:38:28 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze GOOGL: 2 points
+2026-04-17 17:38:28 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 2 points
+2026-04-17 17:38:28 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 2 points
+2026-04-17 17:38:28 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 2 points
+2026-04-17 17:38:28 [http-nio-8080-exec-3] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:38:28 [http-nio-8080-exec-4] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: anomaly.test@stocksentinel.local
+2026-04-17 17:38:28 [http-nio-8080-exec-4] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies
+2026-04-17 17:38:28 [http-nio-8080-exec-4] INFO  c.s.anomaly.AnomalyService - Fetching all anomalies - count: 0
+2026-04-17 17:38:34 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:38:35 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:38:38 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 0 symbols successfully
+2026-04-17 17:38:38 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AAPL: 2 points
+2026-04-17 17:38:38 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze TSLA: 2 points
+2026-04-17 17:38:38 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze GOOGL: 2 points
+2026-04-17 17:38:38 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 2 points
+2026-04-17 17:38:38 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 2 points
+2026-04-17 17:38:38 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 2 points
+2026-04-17 17:38:38 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:38:45 [http-nio-8080-exec-5] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/login — email: anomaly.test@stocksentinel.local
+2026-04-17 17:38:46 [http-nio-8080-exec-5] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: anomaly.test@stocksentinel.local
+2026-04-17 17:38:46 [http-nio-8080-exec-5] INFO  com.stocksentinel.auth.AuthService - User logged in: anomaly.test@stocksentinel.local
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: anomaly.test@stocksentinel.local
+2026-04-17 17:38:46 [http-nio-8080-exec-6] INFO  c.s.stock.StockController - POST /api/stocks/upload-csv — file: sample-stocks.csv
+2026-04-17 17:38:46 [http-nio-8080-exec-6] INFO  c.stocksentinel.stock.StockService - CSV upload initiated — filename: sample-stocks.csv
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 2: AAPL at 178.5
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 3: AAPL at 179.2
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 4: AAPL at 178.8
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 5: AAPL at 179.0
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 6: AAPL at 178.6
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 7: AAPL at 245.9
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 8: AAPL at 179.1
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 9: TSLA at 245.3
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 10: TSLA at 246.1
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 11: TSLA at 245.8
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 12: TSLA at 246.5
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 13: TSLA at 245.6
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 14: TSLA at 198.2
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 15: TSLA at 246.0
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 16: GOOGL at 141.2
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 17: GOOGL at 141.8
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 18: GOOGL at 141.5
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 19: GOOGL at 141.9
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 20: GOOGL at 141.3
+2026-04-17 17:38:46 [http-nio-8080-exec-6] DEBUG c.s.stock.CsvImportService - Imported row 21: GOOGL at 141.6
+2026-04-17 17:38:46 [http-nio-8080-exec-6] INFO  c.s.stock.CsvImportService - CSV import complete — total: 20, imported: 20, skipped: 0
+2026-04-17 17:38:46 [http-nio-8080-exec-7] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: anomaly.test@stocksentinel.local
+2026-04-17 17:38:46 [http-nio-8080-exec-7] INFO  c.s.datasource.DataSourceController - POST /api/datasource/poll — manual poll triggered
+2026-04-17 17:38:46 [http-nio-8080-exec-7] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:38:46 [http-nio-8080-exec-7] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.datasource.FinnhubService - Finnhub fetched 0 symbols successfully
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=33.16%, severity=HIGH
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for AAPL: deviation=33.16%
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.datasource.DataSourceManager - Anomalies detected for AAPL: 1 records
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.52, severity=MEDIUM
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for TSLA: PRICE_SPIKE severity=MEDIUM
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=50.85%, severity=HIGH
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for TSLA: deviation=50.85%
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.datasource.DataSourceManager - Anomalies detected for TSLA: 2 records
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.45, severity=LOW
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for GOOGL: PRICE_SPIKE severity=LOW
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=98.44%, severity=HIGH
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for GOOGL: deviation=98.44%
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.datasource.DataSourceManager - Anomalies detected for GOOGL: 2 records
+2026-04-17 17:38:50 [http-nio-8080-exec-7] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 2 points
+2026-04-17 17:38:50 [http-nio-8080-exec-7] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 2 points
+2026-04-17 17:38:50 [http-nio-8080-exec-7] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 2 points
+2026-04-17 17:38:50 [http-nio-8080-exec-7] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:38:50 [http-nio-8080-exec-8] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: anomaly.test@stocksentinel.local
+2026-04-17 17:38:50 [http-nio-8080-exec-8] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies
+2026-04-17 17:38:50 [http-nio-8080-exec-8] INFO  c.s.anomaly.AnomalyService - Fetching all anomalies - count: 5
+2026-04-17 17:38:50 [http-nio-8080-exec-9] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: anomaly.test@stocksentinel.local
+2026-04-17 17:38:50 [http-nio-8080-exec-9] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies/AAPL
+2026-04-17 17:38:50 [http-nio-8080-exec-10] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: anomaly.test@stocksentinel.local
+2026-04-17 17:38:50 [http-nio-8080-exec-10] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies/severity/HIGH
+2026-04-17 17:38:50 [http-nio-8080-exec-1] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: anomaly.test@stocksentinel.local
+2026-04-17 17:38:50 [http-nio-8080-exec-1] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies/count
+2026-04-17 17:46:50 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-17 17:46:50 [main] INFO  c.s.StockSentinelApplication - Starting StockSentinelApplication using Java 17.0.12 with PID 14156 (C:\Users\user\GITDSA\Stock-Sentinel\target\classes started by user in C:\Users\user\GITDSA\Stock-Sentinel)
+2026-04-17 17:46:50 [main] DEBUG c.s.StockSentinelApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2026-04-17 17:46:50 [main] INFO  c.s.StockSentinelApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-17 17:46:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-17 17:46:50 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 3 JPA repository interfaces.
+2026-04-17 17:46:51 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-17 17:46:51 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-17 17:46:51 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-17 17:46:51 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2026-04-17 17:46:51 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-17 17:46:51 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 643 ms
+2026-04-17 17:46:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-17 17:46:51 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:stocksentineldb user=SA
+2026-04-17 17:46:51 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-17 17:46:51 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:stocksentineldb'
+2026-04-17 17:46:51 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-17 17:46:51 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2026-04-17 17:46:51 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-04-17 17:46:51 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-17 17:46:51 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-17 17:46:51 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-17 17:46:51 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-17 17:46:51 [main] DEBUG c.stocksentinel.auth.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2026-04-17 17:46:51 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-17 17:46:52 [main] INFO  c.s.config.SecurityConfig - Security configuration loaded
+2026-04-17 17:46:52 [main] INFO  c.s.config.SchedulerConfig - Scheduler enabled — live stock polling is active
+2026-04-17 17:46:52 [main] INFO  com.stocksentinel.config.CorsConfig - CORS configured for http://localhost:5173
+2026-04-17 17:46:52 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-17 17:46:52 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: d59c8171-1a85-4028-a69e-f5104fdfdfcb
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-17 17:46:52 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@130901fd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@659f5f32, org.springframework.security.web.context.SecurityContextHolderFilter@9a00385, org.springframework.security.web.header.HeaderWriterFilter@7ff395fa, org.springframework.security.web.authentication.logout.LogoutFilter@6be8e6ee, com.stocksentinel.auth.JwtAuthFilter@222a7429, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1cc9b564, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3701acee, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@20fdd484, org.springframework.security.web.session.SessionManagementFilter@3c2956a6, org.springframework.security.web.access.ExceptionTranslationFilter@4cb37177, org.springframework.security.web.access.intercept.AuthorizationFilter@5304ac92]
+2026-04-17 17:46:52 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-17 17:46:52 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2026-04-17 17:46:52 [main] INFO  c.s.StockSentinelApplication - Started StockSentinelApplication in 2.204 seconds (process running for 2.353)
+2026-04-17 17:46:52 [main] INFO  c.s.StockSentinelApplication - ========================================
+2026-04-17 17:46:52 [main] INFO  c.s.StockSentinelApplication -   StockSentinel is starting up...
+2026-04-17 17:46:52 [main] INFO  c.s.StockSentinelApplication -   Swagger UI: http://localhost:8080/swagger-ui.html
+2026-04-17 17:46:52 [main] INFO  c.s.StockSentinelApplication -   H2 Console: http://localhost:8080/h2-console
+2026-04-17 17:46:52 [main] INFO  c.s.StockSentinelApplication - ========================================
+2026-04-17 17:46:52 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:46:53 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:46:53 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 17:46:54 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 17:46:54 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 17:46:55 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 17:46:55 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 17:46:56 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 198.35
+2026-04-17 17:46:56 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-17 17:46:56 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AAPL: 1 points
+2026-04-17 17:46:56 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze TSLA: 1 points
+2026-04-17 17:46:56 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze GOOGL: 1 points
+2026-04-17 17:46:56 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 1 points
+2026-04-17 17:46:56 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 1 points
+2026-04-17 17:46:56 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 1 points
+2026-04-17 17:46:56 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:47:25 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-17 17:47:25 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-17 17:47:25 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-04-17 17:47:25 [http-nio-8080-exec-1] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/register — email: test@test.com
+2026-04-17 17:47:25 [http-nio-8080-exec-1] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: test@test.com
+2026-04-17 17:47:25 [http-nio-8080-exec-1] INFO  com.stocksentinel.auth.AuthService - New user registered: test@test.com
+2026-04-17 17:47:42 [http-nio-8080-exec-4] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/login — email: test@test.com
+2026-04-17 17:47:42 [http-nio-8080-exec-4] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: test@test.com
+2026-04-17 17:47:42 [http-nio-8080-exec-4] INFO  com.stocksentinel.auth.AuthService - User logged in: test@test.com
+2026-04-17 17:47:47 [http-nio-8080-exec-5] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: test@test.com
+2026-04-17 17:47:47 [http-nio-8080-exec-5] INFO  c.s.stock.StockController - GET /api/stocks/symbols
+2026-04-17 17:47:47 [http-nio-8080-exec-5] INFO  c.stocksentinel.stock.StockService - Fetching all distinct symbols
+2026-04-17 17:47:54 [http-nio-8080-exec-3] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: test@test.com
+2026-04-17 17:47:54 [http-nio-8080-exec-3] INFO  c.s.datasource.DataSourceController - GET /api/datasource/status
+2026-04-17 17:47:56 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:47:57 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:47:57 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 17:47:57 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 17:47:58 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 17:47:59 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 17:47:59 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 17:48:00 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 198.35
+2026-04-17 17:48:00 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-17 17:48:00 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AAPL: 2 points
+2026-04-17 17:48:00 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze TSLA: 2 points
+2026-04-17 17:48:00 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze GOOGL: 2 points
+2026-04-17 17:48:00 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 2 points
+2026-04-17 17:48:00 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 2 points
+2026-04-17 17:48:00 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 2 points
+2026-04-17 17:48:00 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: test@test.com
+2026-04-17 17:48:10 [http-nio-8080-exec-9] INFO  c.s.stock.StockController - POST /api/stocks/upload-csv — file: sample-stocks.csv
+2026-04-17 17:48:10 [http-nio-8080-exec-9] INFO  c.stocksentinel.stock.StockService - CSV upload initiated — filename: sample-stocks.csv
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 2: AAPL at 178.5
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 3: AAPL at 179.2
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 4: AAPL at 178.8
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 5: AAPL at 179.0
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 6: AAPL at 178.6
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 7: AAPL at 245.9
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 8: AAPL at 179.1
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 9: TSLA at 245.3
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 10: TSLA at 246.1
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 11: TSLA at 245.8
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 12: TSLA at 246.5
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 13: TSLA at 245.6
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 14: TSLA at 198.2
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 15: TSLA at 246.0
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 16: GOOGL at 141.2
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 17: GOOGL at 141.8
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 18: GOOGL at 141.5
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 19: GOOGL at 141.9
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 20: GOOGL at 141.3
+2026-04-17 17:48:10 [http-nio-8080-exec-9] DEBUG c.s.stock.CsvImportService - Imported row 21: GOOGL at 141.6
+2026-04-17 17:48:10 [http-nio-8080-exec-9] INFO  c.s.stock.CsvImportService - CSV import complete — total: 20, imported: 20, skipped: 0
+2026-04-17 17:48:17 [http-nio-8080-exec-1] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: test@test.com
+2026-04-17 17:48:17 [http-nio-8080-exec-1] INFO  c.s.datasource.DataSourceController - POST /api/datasource/poll — manual poll triggered
+2026-04-17 17:48:17 [http-nio-8080-exec-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:48:18 [http-nio-8080-exec-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:48:18 [http-nio-8080-exec-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 17:48:19 [http-nio-8080-exec-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 17:48:19 [http-nio-8080-exec-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 17:48:20 [http-nio-8080-exec-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 5 symbols successfully
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=28.43%, severity=HIGH
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for AAPL: deviation=28.43%
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for AAPL: 1 records
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=42.79%, severity=HIGH
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for TSLA: deviation=42.79%
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for TSLA: 1 records
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=76.70%, severity=HIGH
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for GOOGL: deviation=76.7%
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for GOOGL: 1 records
+2026-04-17 17:48:21 [http-nio-8080-exec-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 2 points
+2026-04-17 17:48:21 [http-nio-8080-exec-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:48:40 [http-nio-8080-exec-4] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: test@test.com
+2026-04-17 17:48:40 [http-nio-8080-exec-4] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies
+2026-04-17 17:48:40 [http-nio-8080-exec-4] INFO  c.s.anomaly.AnomalyService - Fetching all anomalies - count: 3
+2026-04-17 17:48:48 [http-nio-8080-exec-5] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: test@test.com
+2026-04-17 17:48:48 [http-nio-8080-exec-5] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies/count
+2026-04-17 17:49:00 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:49:01 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:49:01 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 17:49:02 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 17:49:02 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 17:49:03 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 198.35
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=24.88%, severity=HIGH
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for AAPL: deviation=24.88%
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for AAPL: 1 records
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=36.93%, severity=HIGH
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for TSLA: deviation=36.93%
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for TSLA: 1 records
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=62.82%, severity=HIGH
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for GOOGL: deviation=62.82%
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for GOOGL: 1 records
+2026-04-17 17:49:04 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:49:09 [http-nio-8080-exec-8] INFO  o.s.api.AbstractOpenApiResource - Init duration for springdoc-openapi is: 114 ms
+2026-04-17 17:50:05 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:50:05 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:50:05 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 17:50:06 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 17:50:07 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 17:58:46 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-17 17:58:46 [main] INFO  c.s.StockSentinelApplication - Starting StockSentinelApplication using Java 17.0.12 with PID 35868 (C:\Users\user\GITDSA\Stock-Sentinel\target\classes started by user in C:\Users\user\GITDSA\Stock-Sentinel)
+2026-04-17 17:58:46 [main] DEBUG c.s.StockSentinelApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2026-04-17 17:58:46 [main] INFO  c.s.StockSentinelApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-17 17:58:46 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-17 17:58:46 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 29 ms. Found 4 JPA repository interfaces.
+2026-04-17 17:58:47 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-17 17:58:47 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-17 17:58:47 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-17 17:58:47 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2026-04-17 17:58:47 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-17 17:58:47 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 696 ms
+2026-04-17 17:58:47 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-17 17:58:47 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:stocksentineldb user=SA
+2026-04-17 17:58:47 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-17 17:58:47 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:stocksentineldb'
+2026-04-17 17:58:47 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-17 17:58:47 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2026-04-17 17:58:47 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-04-17 17:58:47 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-17 17:58:47 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-17 17:58:47 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-17 17:58:47 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-17 17:58:47 [main] DEBUG c.stocksentinel.auth.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2026-04-17 17:58:48 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-17 17:58:48 [main] INFO  c.s.config.SecurityConfig - Security configuration loaded
+2026-04-17 17:58:48 [main] INFO  c.s.config.SchedulerConfig - Scheduler enabled — live stock polling is active
+2026-04-17 17:58:48 [main] INFO  com.stocksentinel.config.CorsConfig - CORS configured for http://localhost:5173
+2026-04-17 17:58:48 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-17 17:58:48 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: e7fa44c0-7582-4d43-b8db-b9335e2f6dde
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-17 17:58:48 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@708ddfd3, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2778f3d1, org.springframework.security.web.context.SecurityContextHolderFilter@282c3aa0, org.springframework.security.web.header.HeaderWriterFilter@6eec564c, org.springframework.security.web.authentication.logout.LogoutFilter@201a84e1, com.stocksentinel.auth.JwtAuthFilter@260fffec, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f0124b5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2e50ca51, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@30a34f07, org.springframework.security.web.session.SessionManagementFilter@50fbb66a, org.springframework.security.web.access.ExceptionTranslationFilter@55a4a0ab, org.springframework.security.web.access.intercept.AuthorizationFilter@47620803]
+2026-04-17 17:58:48 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-17 17:58:48 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2026-04-17 17:58:48 [main] INFO  c.s.StockSentinelApplication - Started StockSentinelApplication in 2.392 seconds (process running for 2.552)
+2026-04-17 17:58:48 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:58:48 [main] INFO  c.s.StockSentinelApplication - ========================================
+2026-04-17 17:58:48 [main] INFO  c.s.StockSentinelApplication -   StockSentinel is starting up...
+2026-04-17 17:58:48 [main] INFO  c.s.StockSentinelApplication -   Swagger UI: http://localhost:8080/swagger-ui.html
+2026-04-17 17:58:48 [main] INFO  c.s.StockSentinelApplication -   H2 Console: http://localhost:8080/h2-console
+2026-04-17 17:58:48 [main] INFO  c.s.StockSentinelApplication - ========================================
+2026-04-17 17:58:49 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:58:49 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 17:58:50 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 17:58:50 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 17:58:51 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 17:58:51 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 17:58:52 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 198.35
+2026-04-17 17:58:52 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-17 17:58:52 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AAPL: 1 points
+2026-04-17 17:58:52 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze TSLA: 1 points
+2026-04-17 17:58:52 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze GOOGL: 1 points
+2026-04-17 17:58:52 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 1 points
+2026-04-17 17:58:52 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 1 points
+2026-04-17 17:58:52 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 1 points
+2026-04-17 17:58:52 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:59:23 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-17 17:59:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-17 17:59:23 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-04-17 17:59:23 [http-nio-8080-exec-1] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/register — email: alerttester@example.com
+2026-04-17 17:59:23 [http-nio-8080-exec-1] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: alerttester@example.com
+2026-04-17 17:59:23 [http-nio-8080-exec-1] INFO  com.stocksentinel.auth.AuthService - New user registered: alerttester@example.com
+2026-04-17 17:59:23 [http-nio-8080-exec-2] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/login — email: alerttester@example.com
+2026-04-17 17:59:23 [http-nio-8080-exec-2] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: alerttester@example.com
+2026-04-17 17:59:23 [http-nio-8080-exec-2] INFO  com.stocksentinel.auth.AuthService - User logged in: alerttester@example.com
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: alerttester@example.com
+2026-04-17 17:59:23 [http-nio-8080-exec-3] INFO  c.s.stock.StockController - POST /api/stocks/upload-csv — file: sample-stocks.csv
+2026-04-17 17:59:23 [http-nio-8080-exec-3] INFO  c.stocksentinel.stock.StockService - CSV upload initiated — filename: sample-stocks.csv
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 2: AAPL at 178.5
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 3: AAPL at 179.2
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 4: AAPL at 178.8
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 5: AAPL at 179.0
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 6: AAPL at 178.6
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 7: AAPL at 245.9
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 8: AAPL at 179.1
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 9: TSLA at 245.3
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 10: TSLA at 246.1
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 11: TSLA at 245.8
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 12: TSLA at 246.5
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 13: TSLA at 245.6
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 14: TSLA at 198.2
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 15: TSLA at 246.0
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 16: GOOGL at 141.2
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 17: GOOGL at 141.8
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 18: GOOGL at 141.5
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 19: GOOGL at 141.9
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 20: GOOGL at 141.3
+2026-04-17 17:59:23 [http-nio-8080-exec-3] DEBUG c.s.stock.CsvImportService - Imported row 21: GOOGL at 141.6
+2026-04-17 17:59:23 [http-nio-8080-exec-3] INFO  c.s.stock.CsvImportService - CSV import complete — total: 20, imported: 20, skipped: 0
+2026-04-17 17:59:23 [http-nio-8080-exec-6] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: alerttester@example.com
+2026-04-17 17:59:23 [http-nio-8080-exec-6] INFO  c.s.datasource.DataSourceController - POST /api/datasource/poll — manual poll triggered
+2026-04-17 17:59:23 [http-nio-8080-exec-6] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:59:24 [http-nio-8080-exec-6] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:59:24 [http-nio-8080-exec-6] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 17:59:25 [http-nio-8080-exec-6] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 17:59:25 [http-nio-8080-exec-6] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 17:59:26 [http-nio-8080-exec-6] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 17:59:26 [http-nio-8080-exec-6] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 17:59:27 [http-nio-8080-exec-6] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 198.35
+2026-04-17 17:59:27 [http-nio-8080-exec-6] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-17 17:59:27 [http-nio-8080-exec-6] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=33.16%, severity=HIGH
+2026-04-17 17:59:32 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: AAPL - MA_DEVIATION
+2026-04-17 17:59:32 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: AAPL
+2026-04-17 17:59:32 [http-nio-8080-exec-6] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for AAPL: deviation=33.16%
+2026-04-17 17:59:32 [http-nio-8080-exec-6] INFO  c.s.datasource.DataSourceManager - Anomalies detected for AAPL: 1 records
+2026-04-17 17:59:32 [http-nio-8080-exec-6] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.52, severity=MEDIUM
+2026-04-17 17:59:36 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: TSLA - PRICE_SPIKE
+2026-04-17 17:59:36 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: TSLA
+2026-04-17 17:59:36 [http-nio-8080-exec-6] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for TSLA: PRICE_SPIKE severity=MEDIUM
+2026-04-17 17:59:36 [http-nio-8080-exec-6] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=50.85%, severity=HIGH
+2026-04-17 17:59:41 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: TSLA - MA_DEVIATION
+2026-04-17 17:59:41 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: TSLA
+2026-04-17 17:59:41 [http-nio-8080-exec-6] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for TSLA: deviation=50.85%
+2026-04-17 17:59:41 [http-nio-8080-exec-6] INFO  c.s.datasource.DataSourceManager - Anomalies detected for TSLA: 2 records
+2026-04-17 17:59:41 [http-nio-8080-exec-6] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.45, severity=LOW
+2026-04-17 17:59:45 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: GOOGL - PRICE_SPIKE
+2026-04-17 17:59:45 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: GOOGL
+2026-04-17 17:59:45 [http-nio-8080-exec-6] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for GOOGL: PRICE_SPIKE severity=LOW
+2026-04-17 17:59:45 [http-nio-8080-exec-6] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=98.44%, severity=HIGH
+2026-04-17 17:59:49 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: GOOGL - MA_DEVIATION
+2026-04-17 17:59:49 [http-nio-8080-exec-6] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: GOOGL
+2026-04-17 17:59:49 [http-nio-8080-exec-6] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for GOOGL: deviation=98.44%
+2026-04-17 17:59:49 [http-nio-8080-exec-6] INFO  c.s.datasource.DataSourceManager - Anomalies detected for GOOGL: 2 records
+2026-04-17 17:59:49 [http-nio-8080-exec-6] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 2 points
+2026-04-17 17:59:49 [http-nio-8080-exec-6] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 2 points
+2026-04-17 17:59:49 [http-nio-8080-exec-6] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 2 points
+2026-04-17 17:59:49 [http-nio-8080-exec-6] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 17:59:50 [http-nio-8080-exec-5] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: alerttester@example.com
+2026-04-17 17:59:50 [http-nio-8080-exec-5] INFO  c.s.alert.AlertController - GET /api/alerts
+2026-04-17 17:59:50 [http-nio-8080-exec-5] INFO  c.stocksentinel.alert.AlertService - Fetching all alerts - count: 5
+2026-04-17 17:59:50 [http-nio-8080-exec-4] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: alerttester@example.com
+2026-04-17 17:59:50 [http-nio-8080-exec-4] INFO  c.s.alert.AlertController - GET /api/alerts/my - user: alerttester@example.com
+2026-04-17 17:59:52 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 17:59:53 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 17:59:57 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 0 symbols successfully
+2026-04-17 17:59:57 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=33.16%, severity=HIGH
+2026-04-17 18:00:01 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: AAPL - MA_DEVIATION
+2026-04-17 18:00:01 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: AAPL
+2026-04-17 18:00:01 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for AAPL: deviation=33.16%
+2026-04-17 18:00:01 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for AAPL: 1 records
+2026-04-17 18:00:01 [scheduling-1] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.52, severity=MEDIUM
+2026-04-17 18:00:06 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: TSLA - PRICE_SPIKE
+2026-04-17 18:00:06 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: TSLA
+2026-04-17 18:00:06 [scheduling-1] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for TSLA: PRICE_SPIKE severity=MEDIUM
+2026-04-17 18:00:06 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=50.85%, severity=HIGH
+2026-04-17 18:00:10 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: TSLA - MA_DEVIATION
+2026-04-17 18:00:10 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: TSLA
+2026-04-17 18:00:10 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for TSLA: deviation=50.85%
+2026-04-17 18:00:10 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for TSLA: 2 records
+2026-04-17 18:00:10 [scheduling-1] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.45, severity=LOW
+2026-04-17 18:00:15 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: GOOGL - PRICE_SPIKE
+2026-04-17 18:00:15 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: GOOGL
+2026-04-17 18:00:15 [scheduling-1] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for GOOGL: PRICE_SPIKE severity=LOW
+2026-04-17 18:00:15 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=98.44%, severity=HIGH
+2026-04-17 18:00:20 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to alerttester@example.com - subject: StockSentinel Alert: GOOGL - MA_DEVIATION
+2026-04-17 18:00:20 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for alerttester@example.com - email sent: GOOGL
+2026-04-17 18:00:20 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for GOOGL: deviation=98.44%
+2026-04-17 18:00:20 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for GOOGL: 2 records
+2026-04-17 18:00:20 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 2 points
+2026-04-17 18:00:20 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 2 points
+2026-04-17 18:00:20 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 2 points
+2026-04-17 18:00:20 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 18:02:52 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.1.Final
+2026-04-17 18:02:52 [main] INFO  c.s.StockSentinelApplication - Starting StockSentinelApplication using Java 17.0.12 with PID 30696 (C:\Users\user\GITDSA\Stock-Sentinel\target\classes started by user in C:\Users\user\GITDSA\Stock-Sentinel)
+2026-04-17 18:02:52 [main] DEBUG c.s.StockSentinelApplication - Running with Spring Boot v3.2.12, Spring v6.1.15
+2026-04-17 18:02:52 [main] INFO  c.s.StockSentinelApplication - No active profile set, falling back to 1 default profile: "default"
+2026-04-17 18:02:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-17 18:02:52 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 30 ms. Found 5 JPA repository interfaces.
+2026-04-17 18:02:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-04-17 18:02:53 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-04-17 18:02:53 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-04-17 18:02:53 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.33]
+2026-04-17 18:02:53 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-04-17 18:02:53 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 678 ms
+2026-04-17 18:02:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-04-17 18:02:53 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:stocksentineldb user=SA
+2026-04-17 18:02:53 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-04-17 18:02:53 [main] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:stocksentineldb'
+2026-04-17 18:02:53 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-17 18:02:53 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.4.10.Final
+2026-04-17 18:02:53 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-04-17 18:02:53 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-17 18:02:53 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-17 18:02:53 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-17 18:02:53 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-17 18:02:53 [main] DEBUG c.stocksentinel.auth.JwtAuthFilter - Filter 'jwtAuthFilter' configured for use
+2026-04-17 18:02:54 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-17 18:02:54 [main] INFO  c.s.config.SecurityConfig - Security configuration loaded
+2026-04-17 18:02:54 [main] INFO  c.s.config.SchedulerConfig - Scheduler enabled — live stock polling is active
+2026-04-17 18:02:54 [main] INFO  com.stocksentinel.config.CorsConfig - CORS configured for http://localhost:5173
+2026-04-17 18:02:54 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-17 18:02:54 [main] WARN  o.s.b.a.s.s.UserDetailsServiceAutoConfiguration - 
+
+Using generated security password: 532f7cc2-b630-4bfe-ac5d-37e88e9f264a
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2026-04-17 18:02:54 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4746b5d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@611c1f92, org.springframework.security.web.context.SecurityContextHolderFilter@35eb95d3, org.springframework.security.web.header.HeaderWriterFilter@78ded8c9, org.springframework.security.web.authentication.logout.LogoutFilter@60a6564c, com.stocksentinel.auth.JwtAuthFilter@4e9d203e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c320c8b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@af27e00, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3656a6cd, org.springframework.security.web.session.SessionManagementFilter@47ffce5d, org.springframework.security.web.access.ExceptionTranslationFilter@64d128d0, org.springframework.security.web.access.intercept.AuthorizationFilter@40c4b938]
+2026-04-17 18:02:54 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-04-17 18:02:54 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2026-04-17 18:02:54 [main] INFO  c.s.StockSentinelApplication - Started StockSentinelApplication in 2.383 seconds (process running for 2.537)
+2026-04-17 18:02:54 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 18:02:54 [main] INFO  c.s.StockSentinelApplication - ========================================
+2026-04-17 18:02:54 [main] INFO  c.s.StockSentinelApplication -   StockSentinel is starting up...
+2026-04-17 18:02:54 [main] INFO  c.s.StockSentinelApplication -   Swagger UI: http://localhost:8080/swagger-ui.html
+2026-04-17 18:02:54 [main] INFO  c.s.StockSentinelApplication -   H2 Console: http://localhost:8080/h2-console
+2026-04-17 18:02:54 [main] INFO  c.s.StockSentinelApplication - ========================================
+2026-04-17 18:02:55 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 18:02:55 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 18:02:56 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 18:02:56 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 18:02:57 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 18:02:57 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 18:02:58 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 198.35
+2026-04-17 18:02:58 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-17 18:02:58 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AAPL: 1 points
+2026-04-17 18:02:58 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze TSLA: 1 points
+2026-04-17 18:02:58 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze GOOGL: 1 points
+2026-04-17 18:02:58 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 1 points
+2026-04-17 18:02:58 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 1 points
+2026-04-17 18:02:58 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 1 points
+2026-04-17 18:02:58 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 18:03:57 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-17 18:03:57 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-04-17 18:03:57 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-04-17 18:03:57 [http-nio-8080-exec-1] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/register — email: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-1] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-1] INFO  com.stocksentinel.auth.AuthService - New user registered: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-3] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/login — email: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-3] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-3] INFO  com.stocksentinel.auth.AuthService - User logged in: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-2] INFO  c.s.stock.StockController - POST /api/stocks/upload-csv — file: sample-stocks.csv
+2026-04-17 18:03:57 [http-nio-8080-exec-2] INFO  c.stocksentinel.stock.StockService - CSV upload initiated — filename: sample-stocks.csv
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 2: AAPL at 178.5
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 3: AAPL at 179.2
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 4: AAPL at 178.8
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 5: AAPL at 179.0
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 6: AAPL at 178.6
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 7: AAPL at 245.9
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 8: AAPL at 179.1
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 9: TSLA at 245.3
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 10: TSLA at 246.1
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 11: TSLA at 245.8
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 12: TSLA at 246.5
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 13: TSLA at 245.6
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 14: TSLA at 198.2
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 15: TSLA at 246.0
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 16: GOOGL at 141.2
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 17: GOOGL at 141.8
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 18: GOOGL at 141.5
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 19: GOOGL at 141.9
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 20: GOOGL at 141.3
+2026-04-17 18:03:57 [http-nio-8080-exec-2] DEBUG c.s.stock.CsvImportService - Imported row 21: GOOGL at 141.6
+2026-04-17 18:03:57 [http-nio-8080-exec-2] INFO  c.s.stock.CsvImportService - CSV import complete — total: 20, imported: 20, skipped: 0
+2026-04-17 18:03:57 [http-nio-8080-exec-4] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-4] INFO  c.s.watchlist.WatchlistController - POST /api/watchlist - user: watchtester@example.com, symbol: AAPL
+2026-04-17 18:03:57 [http-nio-8080-exec-4] INFO  c.s.watchlist.WatchlistService - User watchtester@example.com added AAPL to watchlist
+2026-04-17 18:03:57 [http-nio-8080-exec-5] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-5] INFO  c.s.watchlist.WatchlistController - GET /api/watchlist - user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-5] INFO  c.s.watchlist.WatchlistService - Fetched watchlist for watchtester@example.com - count: 1
+2026-04-17 18:03:57 [http-nio-8080-exec-6] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-6] INFO  c.s.watchlist.WatchlistController - PUT /api/watchlist/AAPL - user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-6] INFO  c.s.watchlist.WatchlistService - User watchtester@example.com updated thresholds for AAPL
+2026-04-17 18:03:57 [http-nio-8080-exec-7] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-7] INFO  c.s.watchlist.WatchlistController - GET /api/watchlist - user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-7] INFO  c.s.watchlist.WatchlistService - Fetched watchlist for watchtester@example.com - count: 1
+2026-04-17 18:03:57 [http-nio-8080-exec-8] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-8] INFO  c.s.watchlist.WatchlistController - POST /api/watchlist - user: watchtester@example.com, symbol: AAPL
+2026-04-17 18:03:57 [http-nio-8080-exec-8] ERROR c.s.config.GlobalExceptionHandler - Unexpected error: Stock already in your watchlist: AAPL
+2026-04-17 18:03:57 [http-nio-8080-exec-9] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-9] INFO  c.s.watchlist.WatchlistController - DELETE /api/watchlist/AAPL - user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-9] INFO  c.s.watchlist.WatchlistService - User watchtester@example.com removed AAPL from watchlist
+2026-04-17 18:03:57 [http-nio-8080-exec-10] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-10] INFO  c.s.watchlist.WatchlistController - GET /api/watchlist - user: watchtester@example.com
+2026-04-17 18:03:57 [http-nio-8080-exec-10] INFO  c.s.watchlist.WatchlistService - Fetched watchlist for watchtester@example.com - count: 0
+2026-04-17 18:03:58 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-17 18:03:59 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-17 18:03:59 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 263.4
+2026-04-17 18:04:00 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 388.9
+2026-04-17 18:04:00 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 336.02
+2026-04-17 18:04:01 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 420.26
+2026-04-17 18:04:01 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 249.7
+2026-04-17 18:04:02 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 198.35
+2026-04-17 18:04:02 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-17 18:04:02 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=33.16%, severity=HIGH
+2026-04-17 18:04:06 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to watchtester@example.com - subject: StockSentinel Alert: AAPL - MA_DEVIATION
+2026-04-17 18:04:06 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for watchtester@example.com - email sent: AAPL
+2026-04-17 18:04:06 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for AAPL: deviation=33.16%
+2026-04-17 18:04:06 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for AAPL: 1 records
+2026-04-17 18:04:06 [scheduling-1] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.52, severity=MEDIUM
+2026-04-17 18:04:11 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to watchtester@example.com - subject: StockSentinel Alert: TSLA - PRICE_SPIKE
+2026-04-17 18:04:11 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for watchtester@example.com - email sent: TSLA
+2026-04-17 18:04:11 [scheduling-1] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for TSLA: PRICE_SPIKE severity=MEDIUM
+2026-04-17 18:04:11 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=50.85%, severity=HIGH
+2026-04-17 18:04:15 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to watchtester@example.com - subject: StockSentinel Alert: TSLA - MA_DEVIATION
+2026-04-17 18:04:15 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for watchtester@example.com - email sent: TSLA
+2026-04-17 18:04:15 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for TSLA: deviation=50.85%
+2026-04-17 18:04:15 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for TSLA: 2 records
+2026-04-17 18:04:15 [scheduling-1] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.45, severity=LOW
+2026-04-17 18:04:20 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to watchtester@example.com - subject: StockSentinel Alert: GOOGL - PRICE_SPIKE
+2026-04-17 18:04:20 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for watchtester@example.com - email sent: GOOGL
+2026-04-17 18:04:20 [scheduling-1] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for GOOGL: PRICE_SPIKE severity=LOW
+2026-04-17 18:04:20 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=98.44%, severity=HIGH
+2026-04-17 18:04:24 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to watchtester@example.com - subject: StockSentinel Alert: GOOGL - MA_DEVIATION
+2026-04-17 18:04:24 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for watchtester@example.com - email sent: GOOGL
+2026-04-17 18:04:24 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for GOOGL: deviation=98.44%
+2026-04-17 18:04:24 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for GOOGL: 2 records
+2026-04-17 18:04:24 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze MSFT: 2 points
+2026-04-17 18:04:24 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze AMZN: 2 points
+2026-04-17 18:04:24 [scheduling-1] DEBUG c.s.anomaly.AnomalyService - Not enough data to analyze NVDA: 2 points
+2026-04-17 18:04:24 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-17 18:04:43 [http-nio-8080-exec-1] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/login — email: watchtester@example.com
+2026-04-17 18:04:43 [http-nio-8080-exec-1] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: watchtester@example.com
+2026-04-17 18:04:43 [http-nio-8080-exec-1] INFO  com.stocksentinel.auth.AuthService - User logged in: watchtester@example.com
+2026-04-17 18:04:43 [http-nio-8080-exec-3] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:04:43 [http-nio-8080-exec-3] INFO  c.s.watchlist.WatchlistController - GET /api/watchlist - user: watchtester@example.com
+2026-04-17 18:04:43 [http-nio-8080-exec-3] INFO  c.s.watchlist.WatchlistService - Fetched watchlist for watchtester@example.com - count: 0
+2026-04-17 18:04:51 [http-nio-8080-exec-2] INFO  c.stocksentinel.auth.AuthController - POST /api/auth/login — email: watchtester@example.com
+2026-04-17 18:04:51 [http-nio-8080-exec-2] DEBUG com.stocksentinel.auth.JwtUtil - JWT token generated for: watchtester@example.com
+2026-04-17 18:04:51 [http-nio-8080-exec-2] INFO  com.stocksentinel.auth.AuthService - User logged in: watchtester@example.com
+2026-04-17 18:04:51 [http-nio-8080-exec-4] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: watchtester@example.com
+2026-04-17 18:04:51 [http-nio-8080-exec-4] INFO  c.s.watchlist.WatchlistController - GET /api/watchlist - user: watchtester@example.com
+2026-04-17 18:04:51 [http-nio-8080-exec-4] INFO  c.s.watchlist.WatchlistService - Fetched watchlist for watchtester@example.com - count: 0

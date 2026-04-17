@@ -1,0 +1,27 @@
+package com.stocksentinel.stock;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface StockRepository extends JpaRepository<StockData, Long> {
+
+    List<StockData> findBySymbolOrderByTimestampDesc(String symbol);
+
+    List<StockData> findBySymbolAndTimestampBetweenOrderByTimestampAsc(
+            String symbol,
+            LocalDateTime start,
+            LocalDateTime end);
+
+    List<StockData> findTop50BySymbolOrderByTimestampDesc(String symbol);
+
+    boolean existsBySymbolAndTimestamp(String symbol, LocalDateTime timestamp);
+
+    List<StockData> findAllByOrderByTimestampDesc();
+
+    @Query("SELECT DISTINCT s.symbol FROM StockData s ORDER BY s.symbol ASC")
+    List<String> findAllDistinctSymbols();
+}
