@@ -1,0 +1,30 @@
+/* App.css or index.css overrides */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: var(--bg-card); 
+    border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--text-secondary); 
+    border-radius: 8px;
+    opacity: 0.5;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--accent); 
+}
+
+/* Ensure the resize handle is visible if added */
+.resize-handle-container::-webkit-resizer {
+    background: var(--border);
+    outline: 1px solid var(--bg-card);
+}
