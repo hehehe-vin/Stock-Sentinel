@@ -1,5 +1,8 @@
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\stock\CsvImportService.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\stock\StockRepository.java
+C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\datasource\CandleDTO.java
+C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\datasource\LiveQuoteDTO.java
+C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\anomaly\dto\VolatilityDTO.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\datasource\StockSimulatorService.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\alert\AlertRepository.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\watchlist\WatchlistService.java
@@ -34,6 +37,7 @@ C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\exception\pa
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\config\CorsConfig.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\alert\AlertResponseDTO.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\anomaly\AnomalyController.java
+C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\config\StartupCleaner.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\watchlist\package-info.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\stock\dto\CsvUploadResponseDTO.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\auth\dto\RegisterRequestDTO.java

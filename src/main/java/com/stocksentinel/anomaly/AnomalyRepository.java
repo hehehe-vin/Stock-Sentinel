@@ -27,4 +27,14 @@ public interface AnomalyRepository extends JpaRepository<AnomalyRecord, Long> {
 
     @Query("SELECT COUNT(a) FROM AnomalyRecord a WHERE a.timestamp >= :since")
     long countRecentAnomalies(@Param("since") LocalDateTime since);
+
+    // Volatility scoring queries
+    List<AnomalyRecord> findBySymbol(String symbol);
+
+    @Query("SELECT DISTINCT a.symbol FROM AnomalyRecord a")
+    List<String> findDistinctSymbols();
+
+    long countBySymbolAndTimestampAfter(String symbol, LocalDateTime after);
+
+    long countBySymbolAndSeverity(String symbol, String severity);
 }

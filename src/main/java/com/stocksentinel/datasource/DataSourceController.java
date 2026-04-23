@@ -9,8 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -52,4 +54,24 @@ public class DataSourceController {
         response.put("dataSource", dataSource);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/live-quotes")
+    @Operation(summary = "Get real-time quotes directly from the API (no DB)")
+    public ResponseEntity<List<LiveQuoteDTO>> getLiveQuotes() {
+        log.info("GET /api/datasource/live-quotes");
+        List<LiveQuoteDTO> quotes = dataSourceManager.fetchLiveQuotes();
+        return ResponseEntity.ok(quotes);
+    }
+
+    @GetMapping("/candles/{symbol}")
+    @Operation(summary = "Get intraday candle data for a symbol (no DB)")
+    public ResponseEntity<List<CandleDTO>> getCandles(
+            @PathVariable String symbol,
+            @RequestParam(defaultValue = "5") String resolution,
+            @RequestParam(defaultValue = "24") int hours) {
+        log.info("GET /api/datasource/candles/{} (resolution={}, hours={})", symbol, resolution, hours);
+        List<CandleDTO> candles = dataSourceManager.fetchCandles(symbol.toUpperCase(), resolution, hours);
+        return ResponseEntity.ok(candles);
+    }
 }
+

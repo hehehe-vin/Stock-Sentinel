@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -120,4 +121,95 @@ public class AlphaVantageService {
             return false;
         }
     }
+
+    /**
+     * Fetch a single live quote from AlphaVantage WITHOUT saving to DB.
+     */
+    public Optional<LiveQuoteDTO> fetchQuote(String symbol) {
+        try {
+            String url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE"
+                    + "&symbol=" + symbol + "&apikey=" + apiKey;
+
+            @SuppressWarnings("unchecked")
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                url, HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, Object>>() {});
+            Map<String, Object> body = response.getBody();
+
+            if (body == null || !body.containsKey("Global Quote")) return Optional.empty();
+
+            @SuppressWarnings("unchecked")
+            Map<String, String> quote = (Map<String, String>) body.get("Global Quote");
+            if (quote == null || quote.isEmpty()) return Optional.empty();
+
+            double price = Double.parseDouble(quote.getOrDefault("05. price", "0"));
+            if (price == 0) return Optional.empty();
+
+            double change = Double.parseDouble(quote.getOrDefault("09. change", "0"));
+            double changePct = Double.parseDouble(quote.getOrDefault("10. change percent", "0%").replace("%", ""));
+            double high = Double.parseDouble(quote.getOrDefault("03. high", "0"));
+            double low = Double.parseDouble(quote.getOrDefault("04. low", "0"));
+            double open = Double.parseDouble(quote.getOrDefault("02. open", "0"));
+            double prevClose = Double.parseDouble(quote.getOrDefault("08. previous close", "0"));
+
+            return Optional.of(new LiveQuoteDTO(symbol.toUpperCase(), price, change, changePct, high, low, open, prevClose));
+        } catch (Exception e) {
+            log.warn("AlphaVantage quote fetch failed for {}: {}", symbol, e.getMessage());
+            return Optional.empty();
+        }
+    }
+
+    public List<LiveQuoteDTO> fetchQuotes(List<String> symbols) {
+        List<LiveQuoteDTO> quotes = new ArrayList<>();
+        for (String symbol : symbols) {
+            fetchQuote(symbol).ifPresent(quotes::add);
+            try { Thread.sleep(250); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+        }
+        return quotes;
+    }
+
+    /**
+     * Fetch intraday candle data from AlphaVantage WITHOUT saving to DB.
+     */
+    @SuppressWarnings("unchecked")
+    public List<CandleDTO> fetchCandles(String symbol) {
+        List<CandleDTO> candles = new ArrayList<>();
+        try {
+            String url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY"
+                    + "&symbol=" + symbol + "&interval=5min&apikey=" + apiKey;
+
+            ResponseEntity<Map<String, Object>> response = restTemplate.exchange(
+                url, HttpMethod.GET, null, new ParameterizedTypeReference<Map<String, Object>>() {});
+            Map<String, Object> body = response.getBody();
+
+            if (body == null || body.containsKey("Note") || body.containsKey("Information")) return candles;
+
+            Object tsObj = body.get("Time Series (5min)");
+            if (tsObj == null) return candles;
+
+            Map<String, Map<String, String>> timeSeries = (Map<String, Map<String, String>>) tsObj;
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+            for (Map.Entry<String, Map<String, String>> entry : timeSeries.entrySet()) {
+                Map<String, String> vals = entry.getValue();
+                LocalDateTime ldt = LocalDateTime.parse(entry.getKey(), formatter);
+                long epoch = ldt.atZone(java.time.ZoneId.systemDefault()).toEpochSecond();
+
+                candles.add(new CandleDTO(
+                    symbol.toUpperCase(), epoch,
+                    Double.parseDouble(vals.get("1. open")),
+                    Double.parseDouble(vals.get("2. high")),
+                    Double.parseDouble(vals.get("3. low")),
+                    Double.parseDouble(vals.get("4. close")),
+                    Long.parseLong(vals.get("5. volume"))
+                ));
+            }
+
+            candles.sort((a, b) -> Long.compare(a.getTimestamp(), b.getTimestamp()));
+            log.info("AlphaVantage candles fetched for {}: {} data points", symbol, candles.size());
+        } catch (Exception e) {
+            log.warn("AlphaVantage candle fetch failed for {}: {}", symbol, e.getMessage());
+        }
+        return candles;
+    }
 }
+

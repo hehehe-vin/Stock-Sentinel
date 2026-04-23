@@ -2,7 +2,9 @@ package com.stocksentinel.datasource;
 
 import com.stocksentinel.stock.StockData;
 import com.stocksentinel.stock.StockRepository;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -92,4 +94,76 @@ public class StockSimulatorService {
     public List<String> getAvailableSymbols() {
         return new ArrayList<>(BASE_PRICES.keySet());
     }
+
+    // ==================== READ-ONLY METHODS (no DB writes) ====================
+
+    /**
+     * Generate a single live quote without saving to DB.
+     */
+    public LiveQuoteDTO generateQuote(String symbol) {
+        Double basePrice = BASE_PRICES.getOrDefault(symbol.toUpperCase(), 100.0);
+        double price = generateSimulatedPrice(symbol);
+        double change = price - basePrice;
+        double changePct = (change / basePrice) * 100;
+        double high = price * (1 + random.nextDouble() * 0.01);
+        double low = price * (1 - random.nextDouble() * 0.01);
+
+        return new LiveQuoteDTO(
+            symbol.toUpperCase(), price, 
+            Math.round(change * 100.0) / 100.0,
+            Math.round(changePct * 100.0) / 100.0,
+            Math.round(high * 100.0) / 100.0,
+            Math.round(low * 100.0) / 100.0,
+            Math.round(basePrice * 100.0) / 100.0,
+            basePrice
+        );
+    }
+
+    public List<LiveQuoteDTO> generateQuotes(List<String> symbols) {
+        List<LiveQuoteDTO> quotes = new ArrayList<>();
+        for (String symbol : symbols) {
+            quotes.add(generateQuote(symbol));
+        }
+        return quotes;
+    }
+
+    /**
+     * Generate synthetic intraday candle data (random walk from base price).
+     * Creates realistic-looking chart data for offline/demo mode.
+     */
+    public List<CandleDTO> generateCandles(String symbol, int hours) {
+        List<CandleDTO> candles = new ArrayList<>();
+        double basePrice = BASE_PRICES.getOrDefault(symbol.toUpperCase(), 100.0);
+        long now = Instant.now().getEpochSecond();
+        long start = now - (hours * 3600L);
+        int intervalSeconds = 300; // 5-minute candles
+
+        double currentPrice = basePrice;
+
+        for (long t = start; t <= now; t += intervalSeconds) {
+            // Random walk
+            double drift = (random.nextDouble() - 0.48) * 0.003; // slight upward bias
+            double volatility = (random.nextDouble() - 0.5) * 0.01;
+            currentPrice = currentPrice * (1 + drift + volatility);
+
+            double open = currentPrice * (1 + (random.nextDouble() - 0.5) * 0.002);
+            double close = currentPrice;
+            double high = Math.max(open, close) * (1 + random.nextDouble() * 0.003);
+            double low = Math.min(open, close) * (1 - random.nextDouble() * 0.003);
+            long volume = 500_000L + random.nextInt(1_500_000);
+
+            candles.add(new CandleDTO(
+                symbol.toUpperCase(), t,
+                Math.round(open * 100.0) / 100.0,
+                Math.round(high * 100.0) / 100.0,
+                Math.round(low * 100.0) / 100.0,
+                Math.round(close * 100.0) / 100.0,
+                volume
+            ));
+        }
+
+        log.info("Simulator generated {} candles for {}", candles.size(), symbol);
+        return candles;
+    }
 }
+

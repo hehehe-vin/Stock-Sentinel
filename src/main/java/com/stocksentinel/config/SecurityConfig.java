@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -37,9 +38,20 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // Auth endpoints
                         .requestMatchers("/api/auth/register", "/api/auth/login").permitAll()
+                        // Swagger & H2
                         .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/api-docs/**").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
+                        // Public read-only API — dashboard works without login
+                        .requestMatchers(HttpMethod.GET, "/api/stocks/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/stocks").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/datasource/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/anomalies/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/anomalies").permitAll()
+                        // Static resources (for future SPA serving)
+                        .requestMatchers("/", "/index.html", "/assets/**", "/*.js", "/*.css", "/*.ico").permitAll()
+                        // Everything else (CSV upload, watchlist, alerts) needs auth
                         .anyRequest().authenticated())
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

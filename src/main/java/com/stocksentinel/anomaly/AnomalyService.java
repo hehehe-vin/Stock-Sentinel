@@ -2,6 +2,7 @@ package com.stocksentinel.anomaly;
 
 import com.stocksentinel.anomaly.dto.AnomalyCountDTO;
 import com.stocksentinel.anomaly.dto.AnomalyResponseDTO;
+import com.stocksentinel.anomaly.dto.VolatilityDTO;
 import com.stocksentinel.alert.AlertService;
 import com.stocksentinel.exception.ResourceNotFoundException;
 import com.stocksentinel.stock.StockData;
@@ -156,4 +157,41 @@ public class AnomalyService {
                 .totalToday(totalToday)
                 .build();
     }
+
+    // ==================== VOLATILITY SCORING ====================
+
+    public VolatilityDTO getVolatilityScore(String symbol) {
+        String normalized = symbol.toUpperCase();
+        List<AnomalyRecord> all = anomalyRepository.findBySymbol(normalized);
+        long recentCount = anomalyRepository.countBySymbolAndTimestampAfter(
+                normalized, LocalDateTime.now().minusDays(7));
+        long highCount = anomalyRepository.countBySymbolAndSeverity(normalized, "HIGH");
+
+        double avgDev = all.stream()
+                .filter(a -> a.getDeviation() != null)
+                .mapToDouble(a -> Math.abs(a.getDeviation()))
+                .average().orElse(0);
+
+        String rating = calculateVolatilityRating(recentCount, avgDev);
+
+        log.debug("Volatility for {}: rating={}, total={}, recent7d={}, highCount={}",
+                normalized, rating, all.size(), recentCount, highCount);
+
+        return new VolatilityDTO(normalized, rating, all.size(), (int) highCount, (int) recentCount, avgDev);
+    }
+
+    public List<VolatilityDTO> getAllVolatilityScores() {
+        List<String> symbols = anomalyRepository.findDistinctSymbols();
+        return symbols.stream()
+                .map(this::getVolatilityScore)
+                .collect(Collectors.toList());
+    }
+
+    private String calculateVolatilityRating(long recentCount, double avgDeviation) {
+        if (recentCount >= 10 || avgDeviation > 5.0) return "EXTREME";
+        if (recentCount >= 5 || avgDeviation > 3.0) return "HIGH";
+        if (recentCount >= 2 || avgDeviation > 2.0) return "MODERATE";
+        return "LOW";
+    }
 }
+

@@ -94,4 +94,49 @@ public class DataSourceManager {
     public List<String> getWatchedSymbols() {
         return WATCHED_SYMBOLS;
     }
+
+    /**
+     * Fetch real-time quotes with fallback: Finnhub → AlphaVantage → Simulator.
+     * No DB writes — purely for live display.
+     */
+    public List<LiveQuoteDTO> fetchLiveQuotes() {
+        if (finnhubService.isAvailable()) {
+            log.debug("Live quotes source: FINNHUB");
+            List<LiveQuoteDTO> quotes = finnhubService.fetchQuotes(WATCHED_SYMBOLS);
+            if (!quotes.isEmpty()) return quotes;
+        }
+        if (alphaVantageService.isAvailable()) {
+            log.debug("Live quotes source: ALPHAVANTAGE");
+            List<LiveQuoteDTO> quotes = alphaVantageService.fetchQuotes(WATCHED_SYMBOLS);
+            if (!quotes.isEmpty()) return quotes;
+        }
+        log.debug("Live quotes source: SIMULATOR");
+        return stockSimulatorService.generateQuotes(WATCHED_SYMBOLS);
+    }
+
+    /**
+     * Fetch intraday candle data with fallback: Finnhub → AlphaVantage → Simulator.
+     * No DB writes — purely for live chart display.
+     */
+    public List<CandleDTO> fetchCandles(String symbol, String resolution, int hours) {
+        if (finnhubService.isAvailable()) {
+            long to = java.time.Instant.now().getEpochSecond();
+            long from = to - (hours * 3600L);
+            List<CandleDTO> candles = finnhubService.fetchCandles(symbol, resolution, from, to);
+            if (!candles.isEmpty()) {
+                log.info("Candles source: FINNHUB ({} points for {})", candles.size(), symbol);
+                return candles;
+            }
+        }
+        if (alphaVantageService.isAvailable()) {
+            List<CandleDTO> candles = alphaVantageService.fetchCandles(symbol);
+            if (!candles.isEmpty()) {
+                log.info("Candles source: ALPHAVANTAGE ({} points for {})", candles.size(), symbol);
+                return candles;
+            }
+        }
+        log.info("Candles source: SIMULATOR for {}", symbol);
+        return stockSimulatorService.generateCandles(symbol, hours);
+    }
 }
+

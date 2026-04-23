@@ -2,6 +2,7 @@ package com.stocksentinel.anomaly;
 
 import com.stocksentinel.anomaly.dto.AnomalyCountDTO;
 import com.stocksentinel.anomaly.dto.AnomalyResponseDTO;
+import com.stocksentinel.anomaly.dto.VolatilityDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.time.LocalDateTime;
@@ -64,5 +65,19 @@ public class AnomalyController {
     public ResponseEntity<AnomalyCountDTO> getAnomalyCount() {
         log.info("GET /api/anomalies/count");
         return ResponseEntity.ok(anomalyService.getAnomalyCount());
+    }
+
+    @GetMapping("/volatility")
+    @Operation(summary = "Get volatility scores for all symbols with anomaly history")
+    public ResponseEntity<List<VolatilityDTO>> getAllVolatility() {
+        log.info("GET /api/anomalies/volatility");
+        return ResponseEntity.ok(anomalyService.getAllVolatilityScores());
+    }
+
+    @GetMapping("/volatility/{symbol}")
+    @Operation(summary = "Get volatility score for a specific symbol")
+    public ResponseEntity<VolatilityDTO> getVolatility(@PathVariable String symbol) {
+        log.info("GET /api/anomalies/volatility/{}", symbol);
+        return ResponseEntity.ok(anomalyService.getVolatilityScore(symbol));
     }
 }

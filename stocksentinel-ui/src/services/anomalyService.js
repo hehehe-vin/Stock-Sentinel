@@ -5,5 +5,7 @@ export const anomalyService = {
   getAnomaliesBySymbol: (symbol) => API.get(`/anomalies/${symbol}`),
   getAnomaliesBySeverity: (level) => API.get(`/anomalies/severity/${level}`),
   getAnomaliesByDateRange: (start, end) => API.get('/anomalies/range', { params: { start, end } }),
-  getAnomalyCount: () => API.get('/anomalies/count')
+  getAnomalyCount: () => API.get('/anomalies/count'),
+  getVolatility: (symbol) => API.get(`/anomalies/volatility/${symbol}`),
+  getAllVolatility: () => API.get('/anomalies/volatility'),
 };

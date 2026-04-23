@@ -18,10 +18,15 @@ API.interceptors.request.use(config => {
 API.interceptors.response.use(
   response => response,
   error => {
-    if (error.response && error.response.status === 401) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      window.location.href = '/login';
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
+      // Token expired or user no longer exists — clear and redirect
+      // But don't redirect if we're already on auth pages (prevents loop)
+      const path = window.location.pathname;
+      if (path !== '/register' && path !== '/login') {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/register';
+      }
     }
     return Promise.reject(error);
   }
