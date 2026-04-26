@@ -11960,3 +11960,128 @@ This generated password is for development use only. Your security configuration
 2026-04-26 23:12:23 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: TSLA
 2026-04-26 23:12:23 [scheduling-1] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for TSLA: PRICE_SPIKE severity=LOW
 2026-04-26 23:12:23 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=83.29%, severity=HIGH
+2026-04-26 23:12:27 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to vs@gmail.com - subject: StockSentinel Alert: TSLA - MA_DEVIATION
+2026-04-26 23:12:27 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for vs@gmail.com - email sent: TSLA
+2026-04-26 23:12:27 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for kavyarawatkavya831@gmail.com (alerts disabled)
+2026-04-26 23:12:27 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: TSLA
+2026-04-26 23:12:27 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for TSLA: deviation=83.29%
+2026-04-26 23:12:27 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for TSLA: 2 records
+2026-04-26 23:12:27 [scheduling-1] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.24, severity=LOW
+2026-04-26 23:12:27 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for vs@gmail.com (anomaly severity LOW < user threshold MEDIUM)
+2026-04-26 23:12:27 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for vs@gmail.com - email skipped/failed: GOOGL
+2026-04-26 23:12:27 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for kavyarawatkavya831@gmail.com (alerts disabled)
+2026-04-26 23:12:27 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: GOOGL
+2026-04-26 23:12:27 [scheduling-1] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for GOOGL: PRICE_SPIKE severity=LOW
+2026-04-26 23:12:27 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=83.50%, severity=HIGH
+2026-04-26 23:12:31 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to vs@gmail.com - subject: StockSentinel Alert: GOOGL - MA_DEVIATION
+2026-04-26 23:12:31 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for vs@gmail.com - email sent: GOOGL
+2026-04-26 23:12:31 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for kavyarawatkavya831@gmail.com (alerts disabled)
+2026-04-26 23:12:31 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: GOOGL
+2026-04-26 23:12:31 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for GOOGL: deviation=83.5%
+2026-04-26 23:12:31 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for GOOGL: 2 records
+2026-04-26 23:12:31 [scheduling-1] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=2.23, severity=LOW
+2026-04-26 23:12:31 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for vs@gmail.com (anomaly severity LOW < user threshold MEDIUM)
+2026-04-26 23:12:31 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for vs@gmail.com - email skipped/failed: AMZN
+2026-04-26 23:12:31 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for kavyarawatkavya831@gmail.com (alerts disabled)
+2026-04-26 23:12:31 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: AMZN
+2026-04-26 23:12:31 [scheduling-1] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for AMZN: PRICE_SPIKE severity=LOW
+2026-04-26 23:12:31 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=34.86%, severity=HIGH
+2026-04-26 23:12:35 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to vs@gmail.com - subject: StockSentinel Alert: AMZN - MA_DEVIATION
+2026-04-26 23:12:35 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for vs@gmail.com - email sent: AMZN
+2026-04-26 23:12:35 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for kavyarawatkavya831@gmail.com (alerts disabled)
+2026-04-26 23:12:35 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: AMZN
+2026-04-26 23:12:35 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for AMZN: deviation=34.86%
+2026-04-26 23:12:35 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for AMZN: 2 records
+2026-04-26 23:12:35 [scheduling-1] INFO  c.s.anomaly.ZScoreDetector - Z-Score anomaly detected - symbol analysis, Z=-2.23, severity=LOW
+2026-04-26 23:12:35 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for vs@gmail.com (anomaly severity LOW < user threshold MEDIUM)
+2026-04-26 23:12:35 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for vs@gmail.com - email skipped/failed: NVDA
+2026-04-26 23:12:35 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for kavyarawatkavya831@gmail.com (alerts disabled)
+2026-04-26 23:12:35 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: NVDA
+2026-04-26 23:12:35 [scheduling-1] INFO  c.s.anomaly.AnomalyService - Z-Score anomaly saved for NVDA: PRICE_DROP severity=LOW
+2026-04-26 23:12:35 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=72.75%, severity=HIGH
+2026-04-26 23:12:40 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to vs@gmail.com - subject: StockSentinel Alert: NVDA - MA_DEVIATION
+2026-04-26 23:12:40 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for vs@gmail.com - email sent: NVDA
+2026-04-26 23:12:40 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for kavyarawatkavya831@gmail.com (alerts disabled)
+2026-04-26 23:12:40 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: NVDA
+2026-04-26 23:12:40 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for NVDA: deviation=72.75%
+2026-04-26 23:12:40 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for NVDA: 2 records
+2026-04-26 23:12:40 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll completed
+2026-04-26 23:13:04 [http-nio-8080-exec-6] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:04 [http-nio-8080-exec-6] DEBUG c.s.datasource.DataSourceController - GET /api/datasource/status
+2026-04-26 23:13:10 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Live data poll started...
+2026-04-26 23:13:10 [http-nio-8080-exec-1] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-1] DEBUG c.s.datasource.DataSourceController - GET /api/datasource/status
+2026-04-26 23:13:10 [http-nio-8080-exec-7] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-8] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-9] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-5] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-3] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-7] INFO  c.s.datasource.DataSourceController - GET /api/datasource/live-quotes
+2026-04-26 23:13:10 [http-nio-8080-exec-9] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies/count
+2026-04-26 23:13:10 [http-nio-8080-exec-3] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies/volatility
+2026-04-26 23:13:10 [http-nio-8080-exec-8] INFO  c.s.anomaly.AnomalyController - GET /api/anomalies
+2026-04-26 23:13:10 [http-nio-8080-exec-5] INFO  c.s.watchlist.WatchlistController - GET /api/watchlist - user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-5] INFO  c.s.watchlist.WatchlistService - Fetched watchlist for kavyarawatkavya831@gmail.com - count: 0
+2026-04-26 23:13:10 [http-nio-8080-exec-8] INFO  c.s.anomaly.AnomalyService - Fetching all anomalies - count: 224
+2026-04-26 23:13:10 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Volatility for AAPL: rating=EXTREME, total=43, recent7d=43, highCount=41
+2026-04-26 23:13:10 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Volatility for AMZN: rating=EXTREME, total=45, recent7d=45, highCount=43
+2026-04-26 23:13:10 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Volatility for GOOGL: rating=EXTREME, total=44, recent7d=44, highCount=43
+2026-04-26 23:13:10 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Volatility for MSFT: rating=MODERATE, total=4, recent7d=4, highCount=0
+2026-04-26 23:13:10 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Volatility for NVDA: rating=EXTREME, total=44, recent7d=44, highCount=43
+2026-04-26 23:13:10 [http-nio-8080-exec-3] DEBUG c.s.anomaly.AnomalyService - Volatility for TSLA: rating=EXTREME, total=44, recent7d=44, highCount=43
+2026-04-26 23:13:10 [http-nio-8080-exec-2] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-2] INFO  c.s.stock.StockController - GET /api/stocks/symbols
+2026-04-26 23:13:10 [http-nio-8080-exec-2] INFO  c.stocksentinel.stock.StockService - Fetching all distinct symbols
+2026-04-26 23:13:10 [http-nio-8080-exec-4] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-10] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-6] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-1] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-4] INFO  c.s.stock.StockController - GET /api/stocks/AAPL
+2026-04-26 23:13:10 [http-nio-8080-exec-10] INFO  c.s.stock.StockController - GET /api/stocks/AMZN
+2026-04-26 23:13:10 [http-nio-8080-exec-6] INFO  c.s.stock.StockController - GET /api/stocks/GOOGL
+2026-04-26 23:13:10 [http-nio-8080-exec-1] INFO  c.s.stock.StockController - GET /api/stocks/IBM
+2026-04-26 23:13:10 [http-nio-8080-exec-4] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: AAPL
+2026-04-26 23:13:10 [http-nio-8080-exec-10] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: AMZN
+2026-04-26 23:13:10 [http-nio-8080-exec-1] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: IBM
+2026-04-26 23:13:10 [http-nio-8080-exec-6] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: GOOGL
+2026-04-26 23:13:10 [http-nio-8080-exec-5] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-7] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-5] INFO  c.s.stock.StockController - GET /api/stocks/MSFT
+2026-04-26 23:13:10 [http-nio-8080-exec-7] INFO  c.s.stock.StockController - GET /api/stocks/META
+2026-04-26 23:13:10 [http-nio-8080-exec-5] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: MSFT
+2026-04-26 23:13:10 [http-nio-8080-exec-7] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: META
+2026-04-26 23:13:10 [http-nio-8080-exec-8] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-2] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-9] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-3] DEBUG c.stocksentinel.auth.JwtAuthFilter - Authenticated user: kavyarawatkavya831@gmail.com
+2026-04-26 23:13:10 [http-nio-8080-exec-2] INFO  c.s.stock.StockController - GET /api/stocks/TSLA
+2026-04-26 23:13:10 [http-nio-8080-exec-8] INFO  c.s.stock.StockController - GET /api/stocks/NVDA
+2026-04-26 23:13:10 [http-nio-8080-exec-9] INFO  c.s.stock.StockController - GET /api/stocks/NFLX
+2026-04-26 23:13:10 [http-nio-8080-exec-3] INFO  c.s.stock.StockController - GET /api/stocks/ORCL
+2026-04-26 23:13:10 [http-nio-8080-exec-8] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: NVDA
+2026-04-26 23:13:10 [http-nio-8080-exec-3] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: ORCL
+2026-04-26 23:13:10 [http-nio-8080-exec-9] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: NFLX
+2026-04-26 23:13:10 [http-nio-8080-exec-2] INFO  c.stocksentinel.stock.StockService - Fetching stock data for: TSLA
+2026-04-26 23:13:10 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Data source: FINNHUB
+2026-04-26 23:13:10 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AAPL at price 271.08
+2026-04-26 23:13:11 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: TSLA at price 376.32
+2026-04-26 23:13:12 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: GOOGL at price 344.42
+2026-04-26 23:13:12 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: MSFT at price 424.64
+2026-04-26 23:13:13 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: AMZN at price 264.01
+2026-04-26 23:13:13 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub saved: NVDA at price 208.29
+2026-04-26 23:13:13 [scheduling-1] INFO  c.s.datasource.FinnhubService - Finnhub fetched 6 symbols successfully
+2026-04-26 23:13:17 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=34.15%, severity=HIGH
+2026-04-26 23:13:21 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to vs@gmail.com - subject: StockSentinel Alert: AAPL - MA_DEVIATION
+2026-04-26 23:13:21 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for vs@gmail.com - email sent: AAPL
+2026-04-26 23:13:21 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for kavyarawatkavya831@gmail.com (alerts disabled)
+2026-04-26 23:13:21 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: AAPL
+2026-04-26 23:13:21 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for AAPL: deviation=34.15%
+2026-04-26 23:13:21 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for AAPL: 1 records
+2026-04-26 23:13:21 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=72.25%, severity=HIGH
+2026-04-26 23:13:25 [scheduling-1] INFO  c.stocksentinel.alert.EmailService - Alert email sent to vs@gmail.com - subject: StockSentinel Alert: TSLA - MA_DEVIATION
+2026-04-26 23:13:25 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for vs@gmail.com - email sent: TSLA
+2026-04-26 23:13:25 [scheduling-1] DEBUG c.stocksentinel.alert.AlertService - Skipping email for kavyarawatkavya831@gmail.com (alerts disabled)
+2026-04-26 23:13:25 [scheduling-1] INFO  c.stocksentinel.alert.AlertService - Alert created for kavyarawatkavya831@gmail.com - email skipped/failed: TSLA
+2026-04-26 23:13:25 [scheduling-1] INFO  c.s.anomaly.AnomalyService - MA anomaly saved for TSLA: deviation=72.25%
+2026-04-26 23:13:25 [scheduling-1] INFO  c.s.datasource.DataSourceManager - Anomalies detected for TSLA: 1 records
+2026-04-26 23:13:25 [scheduling-1] INFO  c.s.anomaly.MovingAverageDetector - MA anomaly detected - deviation=72.42%, severity=HIGH
