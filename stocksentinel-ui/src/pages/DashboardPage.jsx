@@ -17,7 +17,8 @@ export default function DashboardPage() {
   const [polling, setPolling] = useState(false);
   const [activeTab, setActiveTab] = useState('LIVE');
 
-  const [status, setStatus] = useState({ activeSource: 'Loading...' });
+  const [status, setStatus] = useState({ activeSource: 'Loading...', lastUpdated: null, forceSimulator: false });
+  const [countdown, setCountdown] = useState(30);
   const [anomalyCount, setAnomalyCount] = useState({ totalToday: 0, highCount: 0 });
   const [recentAnomalies, setRecentAnomalies] = useState([]);
 
@@ -34,6 +35,7 @@ export default function DashboardPage() {
   const [toastNotification, setToastNotification] = useState(null);
   const [compareRange, setCompareRange] = useState(100); // percentage of data to show (0-100)
   const prevAnomalyCountRef = useRef(0);
+  const prevSourceRef = useRef(null);
   const candlesFetchedRef = useRef(new Set());
 
   // Fetch candle data for a symbol (called once per symbol)
@@ -60,6 +62,20 @@ export default function DashboardPage() {
         datasourceService.getLiveQuotes().catch(() => ({ data: [] })),
         anomalyService.getAllVolatility().catch(() => ({ data: [] }))
       ]);
+
+      // Source switch notification
+      const newSource = statusRes.data?.activeSource;
+      if (prevSourceRef.current && prevSourceRef.current !== 'Loading...' && prevSourceRef.current !== newSource && newSource && newSource !== 'Loading...') {
+        setToastNotification({
+          type: 'SYSTEM',
+          message: `Engine automatically switched to ${newSource}`,
+          severity: newSource === 'SIMULATOR' ? 'MEDIUM' : 'LOW'
+        });
+        setTimeout(() => setToastNotification(null), 6000);
+      }
+      if (newSource && newSource !== 'Loading...') {
+        prevSourceRef.current = newSource;
+      }
 
       setStatus(statusRes.data);
 
@@ -180,8 +196,14 @@ export default function DashboardPage() {
     fetchData();
     const interval = setInterval(() => {
       fetchData();
+      setCountdown(30);
     }, 30000);
-    return () => clearInterval(interval);
+    
+    const tick = setInterval(() => {
+      setCountdown(prev => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => { clearInterval(interval); clearInterval(tick); };
   }, []);
 
   // Lazy-load candles only when a symbol is selected on the Live tab
@@ -206,10 +228,34 @@ export default function DashboardPage() {
         }));
       }
       await fetchData();
+      setCountdown(30);
     } catch (err) {
       console.error("Poll failed", err);
     } finally {
       setPolling(false);
+    }
+  };
+
+  const handleToggleForceSimulator = async () => {
+    try {
+      const newState = !status.forceSimulator;
+      // Optimistic update
+      setStatus(prev => ({ ...prev, forceSimulator: newState }));
+      await datasourceService.toggleForceSimulator(newState);
+      
+      // Clear candle cache and re-fetch immediately so charts reflect new source
+      candlesFetchedRef.current.clear();
+      setCandleData({});
+      if (activeTab === 'LIVE') {
+        selectedSymbols.forEach(sym => fetchCandlesForSymbol(sym));
+      }
+      
+      await fetchData();
+      setCountdown(30);
+    } catch (err) {
+      console.error("Failed to toggle simulator", err);
+      // Revert on failure
+      setStatus(prev => ({ ...prev, forceSimulator: !prev.forceSimulator }));
     }
   };
 
@@ -424,7 +470,14 @@ export default function DashboardPage() {
     <div className="space-y-6 pb-10">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold" style={{ color: 'var(--text)' }}>Dashboard</h1>
+          <h1 className="text-3xl font-bold flex items-center gap-3" style={{ color: 'var(--text)' }}>
+            Dashboard
+            {activeTab === 'LIVE' && status.lastUpdated && (
+               <span className="text-xs font-medium px-2 py-1 rounded bg-black/5 border" style={{ borderColor: 'var(--border)', color: 'var(--text-secondary)' }}>
+                 Refresh in {countdown}s
+               </span>
+            )}
+          </h1>
           <p style={{ color: 'var(--text-secondary)' }}>{today}</p>
         </div>
         <div className="flex flex-wrap items-center gap-4">
@@ -484,17 +537,31 @@ export default function DashboardPage() {
           </div>
           <AlertTriangle size={24} style={{ color: 'var(--danger)' }} />
         </div>
-        <div className="p-5 rounded-xl flex items-center justify-between shadow-sm" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
-          <div>
-            <p className="text-sm mb-1" style={{ color: 'var(--text-secondary)' }}>Engine Source</p>
-            <div className="flex items-center gap-2 mt-0.5">
-              <span className={`w-2 h-2 rounded-full ${status.activeSource === 'Loading...' ? 'animate-pulse bg-gray-500' : 'bg-green-500'}`}></span>
-              <h3 className="text-lg font-bold truncate" style={{ color: 'var(--text)' }}>
-                {activeTab === 'LIVE' ? status.activeSource : 'STATIC CSV'}
-              </h3>
+        <div className="p-5 rounded-xl flex flex-col justify-between shadow-sm relative overflow-hidden" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm mb-1" style={{ color: 'var(--text-secondary)' }}>Engine Source</p>
+              <div className="flex items-center gap-2 mt-0.5">
+                <span className={`w-2 h-2 rounded-full ${status.activeSource === 'Loading...' ? 'animate-pulse bg-gray-500' : status.activeSource === 'SIMULATOR' ? 'bg-yellow-500' : 'bg-green-500'}`}></span>
+                <h3 className="text-lg font-bold truncate" style={{ color: 'var(--text)' }}>
+                  {activeTab === 'LIVE' ? status.activeSource : 'STATIC CSV'}
+                </h3>
+              </div>
             </div>
+            <Database size={24} style={{ color: activeTab === 'LIVE' && status.activeSource === 'SIMULATOR' ? 'var(--warning)' : 'var(--success)' }} />
           </div>
-          <Database size={24} style={{ color: 'var(--success)' }} />
+          
+          {activeTab === 'LIVE' && (
+            <div className="mt-4 pt-3 border-t flex items-center justify-between" style={{ borderColor: 'var(--border)' }}>
+              <span className="text-xs font-medium" style={{ color: 'var(--text-secondary)' }}>Force Simulator</span>
+              <button 
+                onClick={handleToggleForceSimulator}
+                className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none ${status.forceSimulator ? 'bg-yellow-500' : 'bg-gray-400'}`}
+              >
+                <span className={`inline-block h-3 w-3 transform rounded-full bg-white transition-transform ${status.forceSimulator ? 'translate-x-5' : 'translate-x-1'}`} />
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -1030,33 +1097,41 @@ export default function DashboardPage() {
           className="fixed top-6 right-6 z-50 p-4 rounded-xl shadow-2xl border max-w-sm"
           style={{
             background: 'var(--bg-card)',
-            borderColor: toastNotification.severity === 'HIGH' ? 'var(--danger)' : 'var(--warning)',
+            borderColor: toastNotification.severity === 'HIGH' ? 'var(--danger)' : toastNotification.severity === 'MEDIUM' ? 'var(--warning)' : 'var(--success)',
             borderLeftWidth: '4px',
             animation: 'slideInRight 0.3s ease-out'
           }}
         >
           <div className="flex items-start gap-3">
-            <AlertTriangle size={20} style={{ color: toastNotification.severity === 'HIGH' ? 'var(--danger)' : 'var(--warning)', flexShrink: 0, marginTop: 2 }} />
+            <AlertTriangle size={20} style={{ color: toastNotification.severity === 'HIGH' ? 'var(--danger)' : toastNotification.severity === 'MEDIUM' ? 'var(--warning)' : 'var(--success)', flexShrink: 0, marginTop: 2 }} />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-bold" style={{ color: 'var(--text)' }}>
-                Anomaly Detected
+                {toastNotification.type === 'SYSTEM' ? 'System Event' : 'Anomaly Detected'}
               </p>
-              <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
-                <span className="font-bold" style={{ color: 'var(--text)' }}>{toastNotification.symbol}</span>
-                {' — '}{toastNotification.type}
-                {' '}
-                <span
-                  className="px-1.5 py-0.5 rounded text-[10px] font-bold text-white"
-                  style={{ background: getSeverityColor(toastNotification.severity) }}
-                >
-                  {toastNotification.severity}
-                </span>
-              </p>
-              <p className="text-xs mt-1 font-mono" style={{ color: 'var(--text-secondary)' }}>
-                ${toastNotification.price?.toFixed(2)}
-                {toastNotification.deviation ? ` | Dev: ${toastNotification.deviation}%` : ''}
-                {toastNotification.zScore ? ` | Z: ${toastNotification.zScore}` : ''}
-              </p>
+              {toastNotification.type === 'SYSTEM' ? (
+                <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
+                  {toastNotification.message}
+                </p>
+              ) : (
+                <>
+                  <p className="text-xs mt-1" style={{ color: 'var(--text-secondary)' }}>
+                    <span className="font-bold" style={{ color: 'var(--text)' }}>{toastNotification.symbol}</span>
+                    {' — '}{toastNotification.type}
+                    {' '}
+                    <span
+                      className="px-1.5 py-0.5 rounded text-[10px] font-bold text-white"
+                      style={{ background: getSeverityColor(toastNotification.severity) }}
+                    >
+                      {toastNotification.severity}
+                    </span>
+                  </p>
+                  <p className="text-xs mt-1 font-mono" style={{ color: 'var(--text-secondary)' }}>
+                    ${toastNotification.price?.toFixed(2)}
+                    {toastNotification.deviation ? ` | Dev: ${toastNotification.deviation}%` : ''}
+                    {toastNotification.zScore ? ` | Z: ${toastNotification.zScore}` : ''}
+                  </p>
+                </>
+              )}
             </div>
             <button onClick={() => setToastNotification(null)} className="p-1 rounded hover:bg-black/10 transition-colors" style={{ color: 'var(--text-secondary)' }}>
               <X size={14} />

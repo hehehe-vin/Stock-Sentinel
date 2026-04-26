@@ -110,7 +110,7 @@ If Finnhub is unreachable, the system automatically falls back to Alpha Vantage.
 | **Security** | Spring Security + JWT | Token-based authentication |
 | **Database** | H2 (File-mode) | Persistent embedded DB |
 | **APIs** | Finnhub, Alpha Vantage | Real-time market data |
-| **Email** | Spring Mail (SMTP) | Anomaly alert notifications |
+| **Email** | Spring Mail (SMTP) | Anomaly alert notifications |(optional for now)
 | **Docs** | SpringDoc OpenAPI | Auto-generated Swagger UI |
 
 ---
@@ -125,7 +125,7 @@ If Finnhub is unreachable, the system automatically falls back to Alpha Vantage.
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/Stock-Sentinel.git
+git clone https://github.com/hehehe-vin/Stock-Sentinel.git
 cd Stock-Sentinel
 ```
 

@@ -7,4 +7,5 @@ export const datasourceService = {
   getLiveQuotes: () => API.get('/datasource/live-quotes'),
   getCandles: (symbol, resolution = '5', hours = 24) =>
     API.get(`/datasource/candles/${symbol}?resolution=${resolution}&hours=${hours}`),
+  toggleForceSimulator: (enable) => API.post(`/datasource/force-simulator?enable=${enable}`),
 };

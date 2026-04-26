@@ -5,6 +5,7 @@ C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\datasource\L
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\anomaly\dto\VolatilityDTO.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\datasource\StockSimulatorService.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\alert\AlertRepository.java
+C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\auth\dto\UserPreferenceDTO.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\watchlist\WatchlistService.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\config\SwaggerConfig.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\datasource\FinnhubService.java
@@ -53,6 +54,7 @@ C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\exception\Re
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\stock\package-info.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\alert\EmailService.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\anomaly\AnomalyService.java
+C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\auth\UserPreferenceController.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\watchlist\WatchlistItem.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\alert\package-info.java
 C:\Users\user\GITDSA\Stock-Sentinel\src\main\java\com\stocksentinel\anomaly\AnomalyRepository.java

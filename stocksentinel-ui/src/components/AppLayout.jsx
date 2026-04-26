@@ -3,7 +3,7 @@ import { useTheme } from '../theme/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard, Eye, AlertTriangle, Upload, Settings,
-  LogOut, ChevronLeft, ChevronRight, Activity, Sun, Moon
+  LogOut, ChevronLeft, ChevronRight, Activity, Sun, Moon, Bell
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { datasourceService } from '../services/datasourceService';
@@ -30,6 +30,7 @@ export default function AppLayout() {
     { path: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
     { path: '/watchlist', icon: Eye, label: 'Watchlist' },
     { path: '/anomalies', icon: AlertTriangle, label: 'Anomalies' },
+    { path: '/alerts', icon: Bell, label: 'Alerts' },
     { path: '/csv-upload', icon: Upload, label: 'CSV Upload' },
     { path: '/settings', icon: Settings, label: 'Settings' }
   ];

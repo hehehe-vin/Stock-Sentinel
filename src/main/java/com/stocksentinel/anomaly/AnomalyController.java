@@ -12,9 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import com.stocksentinel.stock.CsvImportService;
+import com.stocksentinel.stock.StockData;
 
 @RestController
 @RequestMapping("/api/anomalies")
@@ -24,9 +28,11 @@ public class AnomalyController {
     private static final Logger log = LoggerFactory.getLogger(AnomalyController.class);
 
     private final AnomalyService anomalyService;
+    private final CsvImportService csvImportService;
 
-    public AnomalyController(AnomalyService anomalyService) {
+    public AnomalyController(AnomalyService anomalyService, CsvImportService csvImportService) {
         this.anomalyService = anomalyService;
+        this.csvImportService = csvImportService;
     }
 
     @GetMapping
@@ -34,6 +40,27 @@ public class AnomalyController {
     public ResponseEntity<List<AnomalyResponseDTO>> getAllAnomalies() {
         log.info("GET /api/anomalies");
         return ResponseEntity.ok(anomalyService.getAllAnomalies());
+    }
+
+    @PostMapping("/backtest")
+    @Operation(summary = "Backtest a CSV file for anomalies")
+    public ResponseEntity<List<AnomalyResponseDTO>> backtestCsv(@RequestParam("file") MultipartFile file) {
+        log.info("POST /api/anomalies/backtest — file: {}", file.getOriginalFilename());
+        List<StockData> data = csvImportService.parseCsvFile(file);
+        List<AnomalyRecord> anomalies = anomalyService.backtestHistoricalData(data);
+        
+        List<AnomalyResponseDTO> dtos = anomalies.stream().map(record -> AnomalyResponseDTO.builder()
+                .id(record.getId())
+                .symbol(record.getSymbol())
+                .type(record.getType())
+                .severity(record.getSeverity())
+                .zScore(record.getZScore())
+                .deviation(record.getDeviation())
+                .priceAtDetection(record.getPriceAtDetection())
+                .timestamp(record.getTimestamp() == null ? null : record.getTimestamp().toString()) // Simplify timestamp
+                .build()).toList();
+                
+        return ResponseEntity.ok(dtos);
     }
 
     @GetMapping("/{symbol}")

@@ -1,5 +1,7 @@
+import { useState, useEffect } from 'react';
 import { useTheme } from '../theme/ThemeContext';
-import { Palette, Type, Layout, LineChart as LineChartIcon, Check } from 'lucide-react';
+import { Palette, Type, Layout, LineChart as LineChartIcon, Check, Bell } from 'lucide-react';
+import { userService } from '../services/userService';
 
 export default function SettingsPage() {
   const { 
@@ -8,6 +10,32 @@ export default function SettingsPage() {
     sidebarExpanded, setSidebarExpanded,
     chartType, setChartType
   } = useTheme();
+
+  const [preferences, setPreferences] = useState({
+    emailAlertsEnabled: true,
+    minimumAlertSeverity: 'MEDIUM'
+  });
+  const [saveStatus, setSaveStatus] = useState('');
+
+  useEffect(() => {
+    userService.getPreferences().then(res => {
+      setPreferences(res.data);
+    }).catch(err => console.error("Failed to fetch preferences", err));
+  }, []);
+
+  const handlePreferenceChange = async (key, value) => {
+    const newPrefs = { ...preferences, [key]: value };
+    setPreferences(newPrefs);
+    try {
+      await userService.updatePreferences(newPrefs);
+      setSaveStatus('Saved');
+      setTimeout(() => setSaveStatus(''), 2000);
+    } catch (err) {
+      console.error("Failed to update preferences", err);
+      setSaveStatus('Error saving');
+      setTimeout(() => setSaveStatus(''), 2000);
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-10">
@@ -109,6 +137,54 @@ export default function SettingsPage() {
               >
                 Line
               </button>
+            </div>
+          </div>
+        </section>
+
+        {/* ALERT SETTINGS SECTION */}
+        <section className="space-y-6">
+          <div className="flex items-center justify-between mb-4 pb-2 border-b" style={{ borderColor: 'var(--border)' }}>
+            <div className="flex items-center gap-2">
+              <Bell style={{ color: 'var(--accent)' }} />
+              <h2 className="text-xl font-bold" style={{ color: 'var(--text)' }}>Alert & Notification Settings</h2>
+            </div>
+            {saveStatus && (
+              <span className={`text-sm font-medium ${saveStatus === 'Saved' ? 'text-green-500' : 'text-red-500'}`}>
+                {saveStatus}
+              </span>
+            )}
+          </div>
+          
+          <div className="p-5 rounded-xl border shadow-sm space-y-5" style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-bold text-base" style={{ color: 'var(--text)' }}>Enable Email Alerts</p>
+                <p className="text-sm mt-1 max-w-sm" style={{ color: 'var(--text-secondary)' }}>Receive critical anomaly alerts directly to your inbox.</p>
+              </div>
+              <button 
+                onClick={() => handlePreferenceChange('emailAlertsEnabled', !preferences.emailAlertsEnabled)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${preferences.emailAlertsEnabled ? 'bg-green-500' : 'bg-gray-400'}`}
+              >
+                <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${preferences.emailAlertsEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
+              </button>
+            </div>
+
+            <div className={`transition-opacity ${!preferences.emailAlertsEnabled ? 'opacity-50 pointer-events-none' : 'opacity-100'}`}>
+              <p className="font-bold text-base mb-2" style={{ color: 'var(--text)' }}>Minimum Severity Threshold</p>
+              <select 
+                value={preferences.minimumAlertSeverity}
+                onChange={(e) => handlePreferenceChange('minimumAlertSeverity', e.target.value)}
+                className="w-full p-2.5 rounded-lg border text-sm font-medium focus:ring-2 focus:outline-none"
+                style={{ background: 'var(--bg)', borderColor: 'var(--border)', color: 'var(--text)', outlineColor: 'var(--accent)' }}
+              >
+                <option value="LOW">LOW (All anomalies)</option>
+                <option value="MEDIUM">MEDIUM (Significant deviations)</option>
+                <option value="HIGH">HIGH (Major spikes/crashes)</option>
+                <option value="EXTREME">EXTREME (Once-in-a-decade events)</option>
+              </select>
+              <p className="text-xs mt-2" style={{ color: 'var(--text-secondary)' }}>
+                Selecting HIGH means you will only receive emails for major market crashes or spikes, ignoring minor deviations.
+              </p>
             </div>
           </div>
         </section>

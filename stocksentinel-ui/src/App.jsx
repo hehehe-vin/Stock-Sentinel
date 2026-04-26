@@ -13,6 +13,7 @@ import WatchlistPage from './pages/WatchlistPage';
 import AnomaliesPage from './pages/AnomaliesPage';
 import CsvUploadPage from './pages/CsvUploadPage';
 import SettingsPage from './pages/SettingsPage';
+import AlertHistoryPage from './pages/AlertHistoryPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                     <Route path="/anomalies" element={<AnomaliesPage />} />
                     <Route path="/csv-upload" element={<CsvUploadPage />} />
                     <Route path="/settings" element={<SettingsPage />} />
+                    <Route path="/alerts" element={<AlertHistoryPage />} />
                   </Route>
                 </Route>
                 <Route path="*" element={<NotFoundPage />} />

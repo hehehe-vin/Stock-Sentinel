@@ -107,6 +107,47 @@ public class AnomalyService {
         return detectedAnomalies;
     }
 
+    public List<AnomalyRecord> backtestHistoricalData(List<StockData> data) {
+        if (data == null || data.isEmpty()) {
+            return List.of();
+        }
+
+        // Ensure data is sorted by timestamp ascending for backtesting
+        List<StockData> sortedData = new ArrayList<>(data);
+        sortedData.sort((d1, d2) -> d1.getTimestamp().compareTo(d2.getTimestamp()));
+
+        List<AnomalyRecord> anomalies = new ArrayList<>();
+        List<Double> prices = new ArrayList<>();
+
+        for (StockData stock : sortedData) {
+            prices.add(stock.getPrice());
+            
+            if (prices.size() >= 3) {
+                // Use max rolling window of 50 for detection
+                int start = Math.max(0, prices.size() - 50);
+                List<Double> window = prices.subList(start, prices.size());
+
+                Optional<AnomalyRecord> zScoreResult = zScoreDetector.detect(window);
+                zScoreResult.ifPresent(record -> {
+                    record.setSymbol(stock.getSymbol());
+                    record.setTimestamp(stock.getTimestamp());
+                    record.setPriceAtDetection(stock.getPrice());
+                    anomalies.add(record);
+                });
+
+                Optional<AnomalyRecord> maResult = movingAverageDetector.detect(window);
+                maResult.ifPresent(record -> {
+                    record.setSymbol(stock.getSymbol());
+                    record.setTimestamp(stock.getTimestamp());
+                    record.setPriceAtDetection(stock.getPrice());
+                    anomalies.add(record);
+                });
+            }
+        }
+
+        return anomalies;
+    }
+
     public List<AnomalyResponseDTO> getAllAnomalies() {
         List<AnomalyRecord> records = anomalyRepository.findAllByOrderByTimestampDesc();
         log.info("Fetching all anomalies - count: {}", records.size());

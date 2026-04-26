@@ -58,12 +58,25 @@ public class AlertService {
             message += String.format(" Deviation: %.2f%%.", anomaly.getDeviation());
         }
 
+        int anomalyRank = getSeverityRank(anomaly.getSeverity());
         List<UserEntity> users = userRepository.findAll();
         AlertRecord lastCreated = null;
 
         for (UserEntity user : users) {
             String subject = "StockSentinel Alert: " + anomaly.getSymbol() + " - " + anomaly.getType();
-            boolean sent = emailService.sendAlertEmail(user.getEmail(), subject, message);
+            boolean sent = false;
+
+            if (user.isEmailAlertsEnabled()) {
+                int userThreshold = getSeverityRank(user.getMinimumAlertSeverity());
+                if (anomalyRank >= userThreshold) {
+                    sent = emailService.sendAlertEmail(user.getEmail(), subject, message);
+                } else {
+                    log.debug("Skipping email for {} (anomaly severity {} < user threshold {})",
+                            user.getEmail(), anomaly.getSeverity(), user.getMinimumAlertSeverity());
+                }
+            } else {
+                log.debug("Skipping email for {} (alerts disabled)", user.getEmail());
+            }
 
             AlertRecord alert = AlertRecord.builder()
                     .symbol(anomaly.getSymbol())
@@ -78,11 +91,22 @@ public class AlertService {
             log.info(
                     "Alert created for {} - email {}: {}",
                     user.getEmail(),
-                    sent ? "sent" : "failed",
+                    sent ? "sent" : "skipped/failed",
                     anomaly.getSymbol());
         }
 
         return lastCreated;
+    }
+
+    private int getSeverityRank(String severity) {
+        if (severity == null) return 0;
+        switch (severity.toUpperCase()) {
+            case "EXTREME": return 4;
+            case "HIGH": return 3;
+            case "MEDIUM": return 2;
+            case "LOW": return 1;
+            default: return 0;
+        }
     }
 
     public List<AlertResponseDTO> getAllAlerts() {

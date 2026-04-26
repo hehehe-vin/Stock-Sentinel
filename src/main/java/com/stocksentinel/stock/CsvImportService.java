@@ -119,4 +119,57 @@ public class CsvImportService {
                 .errors(errors)
                 .build();
     }
+
+    public List<StockData> parseCsvFile(MultipartFile file) {
+        if (file == null || file.isEmpty()) {
+            throw new InvalidCsvException("Uploaded file is empty");
+        }
+
+        String filename = file.getOriginalFilename();
+        if (filename == null || !filename.endsWith(".csv")) {
+            throw new InvalidCsvException("File must be a .csv file");
+        }
+
+        List<StockData> data = new ArrayList<>();
+
+        try (CSVReader reader = new CSVReader(new InputStreamReader(file.getInputStream()))) {
+            String[] header = reader.readNext();
+            List<String> expectedHeader = Arrays.asList("symbol", "price", "volume", "timestamp");
+
+            if (header == null || header.length != 4 || !expectedHeader.equals(Arrays.asList(header))) {
+                throw new InvalidCsvException("CSV must have columns: symbol, price, volume, timestamp");
+            }
+
+            String[] row;
+            int lineNumber = 1;
+            while ((row = reader.readNext()) != null) {
+                lineNumber++;
+                try {
+                    if (row.length != 4) {
+                        continue; // Skip invalid rows in parsing
+                    }
+                    String symbol = row[0].trim().toUpperCase();
+                    Double price = Double.parseDouble(row[1].trim());
+                    Long volume = Long.parseLong(row[2].trim());
+                    LocalDateTime timestamp = LocalDateTime.parse(row[3].trim(), CSV_TIMESTAMP_FORMAT);
+
+                    data.add(StockData.builder()
+                            .symbol(symbol)
+                            .price(price)
+                            .volume(volume)
+                            .timestamp(timestamp)
+                            .source("CSV")
+                            .build());
+                } catch (Exception e) {
+                    // Skip errors during parsing for backtesting
+                }
+            }
+        } catch (InvalidCsvException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new InvalidCsvException("Failed to process CSV file: " + e.getMessage());
+        }
+
+        return data;
+    }
 }

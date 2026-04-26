@@ -30,10 +30,12 @@ public class DataSourceController {
 
     @GetMapping("/status")
     @Operation(summary = "Get currently active data source")
-    public ResponseEntity<Map<String, String>> getCurrentSource() {
-        log.info("GET /api/datasource/status");
-        Map<String, String> response = new HashMap<>();
+    public ResponseEntity<Map<String, Object>> getCurrentSource() {
+        log.debug("GET /api/datasource/status");
+        Map<String, Object> response = new HashMap<>();
         response.put("activeSource", dataSourceManager.getCurrentDataSource());
+        response.put("lastUpdated", dataSourceManager.getCachedLastUpdated());
+        response.put("forceSimulator", dataSourceManager.isForceSimulator());
         return ResponseEntity.ok(response);
     }
 
@@ -46,12 +48,26 @@ public class DataSourceController {
 
     @PostMapping("/poll")
     @Operation(summary = "Manually trigger a live data poll")
-    public ResponseEntity<Map<String, String>> triggerManualPoll() {
+    public ResponseEntity<Map<String, Object>> triggerManualPoll() {
         log.info("POST /api/datasource/poll — manual poll triggered");
         String dataSource = dataSourceManager.triggerManualPoll();
-        Map<String, String> response = new HashMap<>();
+        Map<String, Object> response = new HashMap<>();
         response.put("message", "Manual poll triggered successfully");
         response.put("dataSource", dataSource);
+        response.put("lastUpdated", dataSourceManager.getCachedLastUpdated());
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/force-simulator")
+    @Operation(summary = "Force the system to use SIMULATOR (saves API limits)")
+    public ResponseEntity<Map<String, Object>> toggleForceSimulator(@RequestParam boolean enable) {
+        log.info("POST /api/datasource/force-simulator?enable={}", enable);
+        dataSourceManager.setForceSimulator(enable);
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Simulator mode updated");
+        response.put("forceSimulator", dataSourceManager.isForceSimulator());
+        response.put("activeSource", dataSourceManager.getCurrentDataSource());
+        response.put("lastUpdated", dataSourceManager.getCachedLastUpdated());
         return ResponseEntity.ok(response);
     }
 

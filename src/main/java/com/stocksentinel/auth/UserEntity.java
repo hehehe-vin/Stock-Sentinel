@@ -42,6 +42,14 @@ public class UserEntity {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean emailAlertsEnabled = true;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private String minimumAlertSeverity = "MEDIUM";
+
     @PrePersist
     public void onPrePersist() {
         if (createdAt == null) {

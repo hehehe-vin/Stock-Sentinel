@@ -8,4 +8,13 @@ export const anomalyService = {
   getAnomalyCount: () => API.get('/anomalies/count'),
   getVolatility: (symbol) => API.get(`/anomalies/volatility/${symbol}`),
   getAllVolatility: () => API.get('/anomalies/volatility'),
+  backtestCsv: (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return API.post('/anomalies/backtest', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+  }
 };
